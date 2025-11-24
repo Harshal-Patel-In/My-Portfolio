@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="antialiased">
+<html lang="en" class="antialiased dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,9 +13,15 @@
                 extend: {
                     colors: {
                         'win-dark': '#202020',
-                        'win-panel': 'rgba(255, 255, 255, 0.85)',
-                        'win-panel-dark': 'rgba(32, 32, 32, 0.85)',
+                        'win-panel': 'rgba(255, 255, 255, 0.65)', 
+                        'win-panel-dark': 'rgba(32, 32, 32, 0.65)',
                         'win-blue': '#0078d4',
+                        'gh-bg': '#0d1117',
+                        'gh-border': '#30363d',
+                        'gh-text': '#c9d1d9',
+                        'gh-muted': '#8b949e',
+                        'gh-btn': '#21262d',
+                        'gh-btn-hover': '#30363d',
                     },
                     animation: {
                         'blink': 'blink 1s step-end infinite',
@@ -36,39 +42,73 @@
         ::-webkit-scrollbar-thumb { background: rgba(156, 163, 175, 0.5); border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(156, 163, 175, 0.8); }
         
+        /* --- PREMIUM GLASSMORPHISM --- */
         .glass {
-            backdrop-filter: blur(20px) saturate(120%);
-            -webkit-backdrop-filter: blur(20px) saturate(120%);
+            backdrop-filter: blur(25px) saturate(150%);
+            -webkit-backdrop-filter: blur(25px) saturate(150%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4));
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .dark .glass {
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.6), rgba(30, 30, 30, 0.4));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* Light Window Glass */
+        .glass-window {
+            backdrop-filter: blur(30px) saturate(120%);
+            -webkit-backdrop-filter: blur(30px) saturate(120%);
+            background: rgba(255, 255, 255, 0.85); 
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            color: #1f2937; /* Dark text for light windows */
+        }
+
+        /* NEW: Dark Window Glass (For Terminal, GitHub, etc.) */
+        .glass-window-dark {
+            backdrop-filter: blur(30px) saturate(120%);
+            -webkit-backdrop-filter: blur(30px) saturate(120%);
+            background: rgba(20, 20, 20, 0.85); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            color: #f3f4f6; /* Light text for dark windows */
+        }
+
+        .dark .glass-window {
+            background: rgba(25, 25, 25, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
         }
         
-        /* Desktop Icons - Improved Contrast */
-        .desktop-icon:hover { background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255,255,255,0.1); }
-        .desktop-icon.selected { background-color: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255,255,255,0.3); }
+        .desktop-icon:hover { 
+            background-color: rgba(255, 255, 255, 0.2); 
+            border: 1px solid rgba(255,255,255,0.2); 
+            backdrop-filter: blur(4px);
+            border-radius: 8px;
+        }
         
-        /* Stronger text shadow for readability on any background */
         .icon-label {
-            text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9); /* Stronger shadow */
+            font-weight: 600;
         }
         
         /* Wallpapers */
         .bg-bloom { background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop'); }
         .bg-mountain { background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2670&auto=format&fit=crop'); }
         .bg-abstract { background-image: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2670&auto=format&fit=crop'); }
-        /* New High Contrast Options */
         .bg-space { background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672&auto=format&fit=crop'); }
-        /* Fixed Broken Link -> New Midnight Gradient */
         .bg-midnight { background-image: url('https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?q=80&w=2672&auto=format&fit=crop'); }
-        
         .bg-lock { background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2670&auto=format&fit=crop'); }
         
-        /* Animations */
         .pop-in { animation: popIn 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); }
         @keyframes popIn { from { transform: scale(0.95) translateY(10px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
         
         .slide-up { animation: slideUp 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
         @keyframes slideUp { from { transform: translateY(100%) translateX(-50%); opacity: 0; } to { transform: translateY(0) translateX(-50%); opacity: 1; } }
 
-        /* Startup Sequence */
         #bios-screen { z-index: 10002; }
         #boot-screen { z-index: 10001; }
         #lock-screen { z-index: 10000; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.6s ease; }
@@ -77,18 +117,40 @@
         .fade-out { opacity: 0; pointer-events: none; transition: opacity 0.8s ease; }
         .slide-up-out { transform: translateY(-100%); opacity: 0; }
         
-        /* App Specific */
         .project-card:hover { transform: translateY(-2px); }
-        .skill-badge:hover { transform: scale(1.05); }
-        
-        /* Terminal */
-        .terminal-text { font-family: 'Courier New', Courier, monospace; }
-        
-        /* Initial State Hiding - CRITICAL FOR FIXING FLICKER */
         .startup-hidden { opacity: 0; pointer-events: none; transition: opacity 1.5s ease; }
+
+        /* GitHub Specific Styles */
+        .gh-btn-secondary {
+            background-color: #21262d;
+            border: 1px solid rgba(240, 246, 252, 0.1);
+            color: #c9d1d9;
+            transition: 0.2s;
+        }
+        .gh-btn-secondary:hover {
+            background-color: #30363d;
+            border-color: #8b949e;
+        }
+        .gh-nav-item {
+            position: relative;
+        }
+        .gh-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -9px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #f78166;
+        }
+        .gh-repo-lang-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
     </style>
 </head>
-<!-- Changed default to bg-space for best visibility -->
 <body class="bg-space bg-cover bg-center bg-no-repeat h-screen w-screen overflow-hidden select-none text-gray-800 dark:text-white transition-all duration-500 font-sans" id="desktop-body">
 
     <!-- 1. BIOS Screen -->
@@ -97,7 +159,7 @@
         <div class="mt-2"><span class="animate-blink">_</span></div>
     </div>
 
-    <!-- 2. Boot Screen (Windows Logo) -->
+    <!-- 2. Boot Screen -->
     <div id="boot-screen" class="fixed inset-0 bg-black flex flex-col items-center justify-center text-white hidden">
         <i class="fab fa-windows text-blue-500 text-8xl mb-16 animate-pulse"></i>
         <div class="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -105,7 +167,8 @@
 
     <!-- 3. Lock Screen -->
     <div id="lock-screen" class="fixed inset-0 bg-lock bg-cover bg-center flex flex-col items-center justify-between py-16 text-white hidden" onclick="unlockScreen()">
-        <div class="flex flex-col items-center mt-16 animate-fade-in-down">
+        <!-- FIXED: Changed bg-black/10 to bg-black/40 for better contrast against light wallpapers -->
+        <div class="flex flex-col items-center mt-16 animate-fade-in-down p-8 rounded-2xl backdrop-blur-md bg-black/30 shadow-2xl border border-white/10">
             <div id="lock-time" class="text-8xl font-bold drop-shadow-lg font-sans tracking-tight">12:00</div>
             <div id="lock-date" class="text-2xl font-medium drop-shadow-md mt-2">Monday, November 24</div>
         </div>
@@ -117,12 +180,13 @@
 
     <!-- 4. Login Screen -->
     <div id="login-screen" class="fixed inset-0 bg-cover bg-center flex flex-col items-center justify-center text-white hidden backdrop-blur-3xl bg-black/40">
-        <div class="flex flex-col items-center animate-fade-in-up">
-            <img src="https://ui-avatars.com/api/?name=Harshal+Patel&background=0078d4&color=fff&size=128" class="w-32 h-32 rounded-full shadow-2xl mb-6 border-4 border-white/20">
-            <div class="text-3xl font-semibold mb-2">Harshal Patel</div>
-            <div class="text-gray-300 mb-8">Administrator</div>
+        <div class="flex flex-col items-center animate-fade-in-up bg-white/10 p-10 rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl">
+            <!-- Profile Pic -->
+            <img src="Profile_Photo.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Harshal+Patel&background=random'" class="w-32 h-32 rounded-full shadow-2xl mb-6 border-4 border-white/20 object-cover">
+            <div class="text-3xl font-semibold mb-2 drop-shadow-md">Harshal Patel</div>
+            <div class="text-gray-200 mb-8 font-light">Administrator</div>
             
-            <button onclick="loginUser()" id="login-btn" class="bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 px-8 py-2 rounded-md font-medium transition active:scale-95 flex items-center gap-2">
+            <button onclick="loginUser()" id="login-btn" class="bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 px-8 py-2 rounded-md font-medium transition active:scale-95 flex items-center gap-2 shadow-lg">
                 Sign In
             </button>
             <div id="login-spinner" class="hidden">
@@ -131,43 +195,43 @@
         </div>
         
         <div class="absolute bottom-8 right-8 flex gap-4 text-2xl">
-            <i class="fas fa-wifi cursor-pointer hover:text-gray-300"></i>
-            <i class="fas fa-universal-access cursor-pointer hover:text-gray-300"></i>
-            <i class="fas fa-power-off cursor-pointer hover:text-gray-300"></i>
+            <i class="fas fa-wifi cursor-pointer hover:text-gray-300 drop-shadow"></i>
+            <i class="fas fa-universal-access cursor-pointer hover:text-gray-300 drop-shadow"></i>
+            <i class="fas fa-power-off cursor-pointer hover:text-gray-300 drop-shadow"></i>
         </div>
     </div>
 
     <!-- Custom Modal (Popup) -->
     <div id="custom-modal" class="hidden fixed inset-0 z-[99999] flex items-center justify-center bg-black/50 backdrop-blur-sm">
-        <div class="bg-white dark:bg-[#2b2b2b] p-6 rounded-lg shadow-2xl w-80 transform transition-all scale-100 text-center border border-gray-200 dark:border-gray-700">
+        <div class="glass p-6 rounded-2xl shadow-2xl w-80 transform transition-all scale-100 text-center">
             <h3 class="text-lg font-bold mb-2 dark:text-white">System Message</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-6" id="modal-message">Hello World!</p>
-            <button onclick="document.getElementById('custom-modal').classList.add('hidden')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full">OK</button>
+            <p class="text-gray-700 dark:text-gray-200 mb-6 font-medium" id="modal-message">Hello World!</p>
+            <button onclick="document.getElementById('custom-modal').classList.add('hidden')" class="bg-blue-600/90 hover:bg-blue-700 text-white px-4 py-2 rounded-lg w-full shadow-lg backdrop-blur-sm transition">OK</button>
         </div>
     </div>
 
-    <!-- Desktop Icons (Initially Hidden to prevent Flicker) -->
+    <!-- Desktop Icons -->
     <div class="absolute top-0 left-0 h-[calc(100%-48px)] w-full p-2 grid grid-flow-col grid-rows-6 gap-2 auto-cols-min content-start startup-hidden" id="desktop-icons">
         <!-- Injected via JS -->
     </div>
 
     <!-- Context Menu -->
-    <div id="context-menu" class="hidden fixed w-48 bg-win-panel dark:bg-[#2b2b2b] glass border border-gray-200 dark:border-gray-700 rounded-md shadow-xl z-50 py-1 text-sm text-gray-800 dark:text-white">
-        <div class="px-4 py-1.5 hover:bg-white/50 dark:hover:bg-white/10 cursor-pointer flex items-center gap-2" onclick="location.reload()">
+    <div id="context-menu" class="hidden fixed w-48 glass rounded-xl shadow-2xl z-50 py-1 text-sm text-gray-800 dark:text-white backdrop-blur-xl">
+        <div class="px-4 py-1.5 hover:bg-white/40 dark:hover:bg-white/10 cursor-pointer flex items-center gap-2 transition-colors" onclick="location.reload()">
             <i class="fas fa-rotate-right w-4"></i> Restart System
         </div>
-        <div class="h-px bg-gray-300 dark:bg-gray-600 my-1 mx-2"></div>
-        <div class="px-4 py-1.5 hover:bg-white/50 dark:hover:bg-white/10 cursor-pointer flex items-center gap-2" onclick="setWallpaper('bg-bloom'); setWallpaper('bg-space'); /* Cycle mock */ ">
+        <div class="h-px bg-gray-400/30 dark:bg-gray-500/30 my-1 mx-2"></div>
+        <div class="px-4 py-1.5 hover:bg-white/40 dark:hover:bg-white/10 cursor-pointer flex items-center gap-2 transition-colors" onclick="setWallpaper('bg-bloom'); setWallpaper('bg-space'); ">
             <i class="fas fa-image w-4"></i> Next Wallpaper
         </div>
-        <div class="px-4 py-1.5 hover:bg-white/50 dark:hover:bg-white/10 cursor-pointer flex items-center gap-2" onclick="toggleDarkMode()">
+        <div class="px-4 py-1.5 hover:bg-white/40 dark:hover:bg-white/10 cursor-pointer flex items-center gap-2 transition-colors" onclick="toggleDarkMode()">
             <i class="fas fa-moon w-4"></i> Toggle Dark Mode
         </div>
-        <div class="h-px bg-gray-300 dark:bg-gray-600 my-1 mx-2"></div>
-        <div class="px-4 py-1.5 hover:bg-white/50 dark:hover:bg-white/10 cursor-pointer flex items-center gap-2" onclick="openApp('settings')">
+        <div class="h-px bg-gray-400/30 dark:bg-gray-500/30 my-1 mx-2"></div>
+        <div class="px-4 py-1.5 hover:bg-white/40 dark:hover:bg-white/10 cursor-pointer flex items-center gap-2 transition-colors" onclick="openApp('settings')">
             <i class="fas fa-sliders w-4"></i> Personalize
         </div>
-        <div class="px-4 py-1.5 hover:bg-white/50 dark:hover:bg-white/10 cursor-pointer flex items-center gap-2" onclick="openApp('terminal')">
+        <div class="px-4 py-1.5 hover:bg-white/40 dark:hover:bg-white/10 cursor-pointer flex items-center gap-2 transition-colors" onclick="openApp('terminal')">
             <i class="fas fa-terminal w-4"></i> Open Terminal
         </div>
     </div>
@@ -178,92 +242,92 @@
     </div>
 
     <!-- Start Menu -->
-    <div id="start-menu" class="hidden absolute bottom-14 left-1/2 w-[640px] h-[680px] bg-win-panel dark:bg-win-panel-dark glass rounded-xl shadow-2xl z-50 p-6 flex flex-col transition-colors duration-300 border border-white/40 dark:border-gray-600/50 transform -translate-x-1/2 origin-bottom">
+    <div id="start-menu" class="hidden absolute bottom-14 left-1/2 w-[640px] h-[680px] glass rounded-2xl shadow-2xl z-50 p-6 flex flex-col transition-colors duration-300 transform -translate-x-1/2 origin-bottom">
         <div class="mb-6 relative">
-            <i class="fas fa-search absolute left-4 top-3 text-gray-500"></i>
-            <input type="text" placeholder="Search for apps, settings, and documents" class="w-full bg-white/60 dark:bg-black/40 rounded-full py-2.5 pl-12 pr-4 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 shadow-sm placeholder-gray-500">
+            <i class="fas fa-search absolute left-4 top-3 text-gray-600 dark:text-gray-400 z-10"></i>
+            <input type="text" placeholder="Search for apps, settings, and documents" class="w-full bg-white/80 dark:bg-black/40 rounded-full py-2.5 pl-12 pr-4 border border-white/50 dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/50 shadow-inner placeholder-gray-600 dark:placeholder-gray-400 backdrop-blur-sm transition-all hover:bg-white/90 text-gray-800 dark:text-white">
         </div>
         
         <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
             <div class="flex justify-between items-center mb-4 px-2">
-                <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-200">Pinned</h3>
-                <button class="text-xs bg-white/50 dark:bg-white/10 px-3 py-1 rounded-md hover:bg-white/80 dark:hover:bg-white/20 transition">All apps <i class="fas fa-chevron-right ml-1 text-[10px]"></i></button>
+                <h3 class="text-sm font-bold text-gray-800 dark:text-gray-100 drop-shadow-sm">Pinned</h3>
+                <button class="text-xs bg-white/40 dark:bg-white/10 px-3 py-1 rounded-full hover:bg-white/60 dark:hover:bg-white/20 transition border border-white/20 shadow-sm">All apps <i class="fas fa-chevron-right ml-1 text-[10px]"></i></button>
             </div>
             <div class="grid grid-cols-6 gap-2 mb-8" id="start-menu-grid">
                 <!-- Icons injected JS -->
             </div>
             
-            <h3 class="text-sm font-semibold mb-4 px-2 text-gray-700 dark:text-gray-200">Recommended</h3>
+            <h3 class="text-sm font-bold mb-4 px-2 text-gray-800 dark:text-gray-100 drop-shadow-sm">Recommended</h3>
             <div class="grid grid-cols-2 gap-2">
-                <div class="flex items-center p-3 hover:bg-white/50 dark:hover:bg-white/10 rounded-lg cursor-pointer transition group" onclick="openApp('about')">
-                    <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3 text-blue-600 dark:text-blue-400">
+                <div class="flex items-center p-3 hover:bg-white/40 dark:hover:bg-white/10 rounded-xl cursor-pointer transition group border border-transparent hover:border-white/20" onclick="openApp('about')">
+                    <div class="w-10 h-10 bg-blue-100/80 dark:bg-blue-900/50 rounded-full flex items-center justify-center mr-3 text-blue-600 dark:text-blue-400 shadow-sm">
                          <i class="fas fa-user text-lg"></i>
                     </div>
                     <div>
-                        <div class="text-sm font-medium">Profile Overview</div>
-                        <div class="text-xs text-gray-500">Recently viewed</div>
+                        <div class="text-sm font-semibold text-gray-800 dark:text-gray-100">Profile Overview</div>
+                        <div class="text-xs text-gray-600 dark:text-gray-400">Recently viewed</div>
                     </div>
                 </div>
-                 <div class="flex items-center p-3 hover:bg-white/50 dark:hover:bg-white/10 rounded-lg cursor-pointer transition group" onclick="openApp('projects')">
-                    <div class="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center mr-3 text-orange-600 dark:text-orange-400">
+                 <div class="flex items-center p-3 hover:bg-white/40 dark:hover:bg-white/10 rounded-xl cursor-pointer transition group border border-transparent hover:border-white/20" onclick="openApp('projects')">
+                    <div class="w-10 h-10 bg-orange-100/80 dark:bg-orange-900/50 rounded-full flex items-center justify-center mr-3 text-orange-600 dark:text-orange-400 shadow-sm">
                          <i class="fas fa-rocket text-lg"></i>
                     </div>
                     <div>
-                        <div class="text-sm font-medium">Latest Projects</div>
-                        <div class="text-xs text-gray-500">Updated yesterday</div>
+                        <div class="text-sm font-semibold text-gray-800 dark:text-gray-100">Latest Projects</div>
+                        <div class="text-xs text-gray-600 dark:text-gray-400">Updated yesterday</div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="mt-auto pt-4 border-t border-gray-300/30 dark:border-gray-600/30 flex justify-between items-center px-2">
-            <div class="flex items-center gap-3 hover:bg-white/40 dark:hover:bg-white/10 p-2 rounded-lg cursor-pointer transition">
-                <img src="https://ui-avatars.com/api/?name=Harshal+Patel&background=0078d4&color=fff" class="w-8 h-8 rounded-full shadow-sm">
-                <span class="text-sm font-medium text-gray-800 dark:text-gray-200">Harshal Patel</span>
+        <div class="mt-auto pt-4 border-t border-gray-400/20 dark:border-gray-600/30 flex justify-between items-center px-2">
+            <div class="flex items-center gap-3 hover:bg-white/40 dark:hover:bg-white/10 p-2 rounded-lg cursor-pointer transition border border-transparent hover:border-white/10">
+                <img src="Profile_Photo.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Harshal+Patel&background=random'" class="w-8 h-8 rounded-full shadow-md border border-white/30 object-cover">
+                <span class="text-sm font-semibold text-gray-800 dark:text-gray-200">Harshal Patel</span>
             </div>
-            <i class="fas fa-power-off text-gray-600 dark:text-gray-300 hover:bg-red-100 dark:hover:bg-red-900/30 hover:text-red-500 p-3 rounded-full transition cursor-pointer" title="Shut Down" onclick="location.reload()"></i>
+            <i class="fas fa-power-off text-gray-600 dark:text-gray-300 hover:bg-red-500/20 hover:text-red-600 dark:hover:text-red-400 p-3 rounded-full transition cursor-pointer" title="Shut Down" onclick="location.reload()"></i>
         </div>
     </div>
 
     <!-- Calendar/Notification Center -->
-    <div id="calendar-flyout" class="hidden absolute bottom-14 right-2 w-80 bg-win-panel dark:bg-win-panel-dark glass rounded-xl shadow-2xl z-50 p-4 slide-up border border-white/40 dark:border-gray-600/50">
+    <div id="calendar-flyout" class="hidden absolute bottom-14 right-2 w-80 glass rounded-2xl shadow-2xl z-50 p-4 slide-up">
         <div class="mb-4">
-            <div class="text-sm text-gray-500 font-medium" id="cal-current-date">Monday, November 24</div>
+            <div class="text-sm text-gray-600 dark:text-gray-400 font-medium" id="cal-current-date">Monday, November 24</div>
             <div class="flex justify-between items-center mt-2">
-                <span class="font-bold text-lg dark:text-white">November 2025</span>
+                <span class="font-bold text-lg text-gray-800 dark:text-white">November 2025</span>
                 <div class="flex gap-2 text-gray-600 dark:text-gray-400">
-                    <i class="fas fa-chevron-up p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded cursor-pointer"></i>
-                    <i class="fas fa-chevron-down p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded cursor-pointer"></i>
+                    <i class="fas fa-chevron-up p-1 hover:bg-white/30 dark:hover:bg-white/10 rounded cursor-pointer transition"></i>
+                    <i class="fas fa-chevron-down p-1 hover:bg-white/30 dark:hover:bg-white/10 rounded cursor-pointer transition"></i>
                 </div>
             </div>
         </div>
-        <div class="grid grid-cols-7 gap-1 text-center text-xs text-gray-600 dark:text-gray-400 mb-2 font-medium">
+        <div class="grid grid-cols-7 gap-1 text-center text-xs text-gray-500 dark:text-gray-400 mb-2 font-bold">
             <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
         </div>
         <div class="grid grid-cols-7 gap-1 text-center text-sm" id="calendar-grid">
              <!-- JS generates days -->
         </div>
-        <div class="mt-4 border-t border-gray-300 dark:border-gray-600 pt-4">
+        <div class="mt-4 border-t border-gray-400/20 dark:border-gray-600/30 pt-4">
             <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Notifications</div>
-            <div class="flex gap-3 p-2 hover:bg-white/50 dark:hover:bg-white/10 rounded cursor-pointer">
-                <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center flex-shrink-0"><i class="fas fa-envelope"></i></div>
+            <div class="flex gap-3 p-2 hover:bg-white/40 dark:hover:bg-white/10 rounded-xl cursor-pointer transition border border-transparent hover:border-white/10">
+                <div class="w-8 h-8 bg-blue-100/80 text-blue-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm"><i class="fas fa-envelope"></i></div>
                 <div>
-                    <div class="text-sm font-bold dark:text-white">New Message</div>
-                    <div class="text-xs text-gray-500">Recruiter: "Are you available for..."</div>
+                    <div class="text-sm font-bold text-gray-800 dark:text-white">New Message</div>
+                    <div class="text-xs text-gray-600 dark:text-gray-400">Recruiter: "Are you available for..."</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Taskbar (Initially Hidden to prevent Flicker) -->
-    <div id="taskbar" class="absolute bottom-0 w-full h-12 bg-win-panel dark:bg-win-panel-dark glass border-t border-white/20 dark:border-white/5 flex justify-between items-center px-2 z-50 transition-colors duration-300 backdrop-blur-2xl startup-hidden">
+    <!-- Taskbar -->
+    <div id="taskbar" class="absolute bottom-0 w-full h-12 glass flex justify-between items-center px-2 z-50 transition-colors duration-300 startup-hidden border-t border-white/30">
         <!-- Widgets (Left) -->
         <div class="flex items-center gap-1 w-40 hidden md:flex pl-2">
-             <div class="hover:bg-white/30 dark:hover:bg-white/10 p-2 rounded-md transition cursor-pointer flex items-center gap-2 group">
-                <i class="fas fa-cloud-sun text-blue-500 group-hover:text-blue-600 transition"></i> 
+             <div class="hover:bg-white/30 dark:hover:bg-white/10 p-1.5 px-3 rounded-md transition cursor-pointer flex items-center gap-2 group border border-transparent hover:border-white/10">
+                <i class="fas fa-cloud-sun text-blue-500 group-hover:text-blue-600 transition drop-shadow-sm"></i> 
                 <div class="flex flex-col leading-none">
-                    <span class="text-xs font-medium">72°F</span>
-                    <span class="text-[10px] text-gray-500 dark:text-gray-400">Sunny</span>
+                    <span class="text-xs font-bold text-gray-800 dark:text-gray-200">72°F</span>
+                    <span class="text-[10px] text-gray-600 dark:text-gray-400 font-medium">Sunny</span>
                 </div>
             </div>
         </div>
@@ -271,21 +335,21 @@
         <!-- Center Apps -->
         <div class="flex items-center gap-1 h-full px-2" id="taskbar-apps">
             <div class="h-[40px] w-[40px] flex items-center justify-center hover:bg-white/40 dark:hover:bg-white/10 rounded-md active:scale-95 transition cursor-pointer" onclick="toggleStartMenu()">
-                <i class="fab fa-windows text-blue-500 text-2xl drop-shadow-sm hover:text-blue-400 transition"></i>
+                <i class="fab fa-windows text-blue-500 text-2xl drop-shadow-md hover:text-blue-400 transition transform hover:scale-105"></i>
             </div>
             <!-- App Icons injected here -->
         </div>
 
         <!-- System Tray (Right) -->
         <div class="flex items-center gap-2 h-full px-2">
-            <div class="flex items-center gap-3 hover:bg-white/30 dark:hover:bg-white/10 p-2 rounded-md h-[85%] transition cursor-pointer text-xs text-gray-700 dark:text-gray-300">
+            <div class="flex items-center gap-3 hover:bg-white/30 dark:hover:bg-white/10 p-2 rounded-md h-[85%] transition cursor-pointer text-xs text-gray-800 dark:text-gray-200 border border-transparent hover:border-white/10">
                 <i class="fas fa-wifi"></i>
                 <i class="fas fa-volume-up"></i>
                 <i class="fas fa-battery-full"></i>
             </div>
-            <div class="flex flex-col items-end justify-center hover:bg-white/30 dark:hover:bg-white/10 px-2 rounded-md h-[85%] transition cursor-pointer min-w-[80px]" onclick="toggleCalendar()">
-                <span id="clock-time" class="text-xs font-medium leading-none mb-[3px]">12:00 PM</span>
-                <span id="clock-date" class="text-[10px] leading-none text-gray-600 dark:text-gray-400">11/24/2025</span>
+            <div class="flex flex-col items-end justify-center hover:bg-white/30 dark:hover:bg-white/10 px-3 rounded-md h-[85%] transition cursor-pointer min-w-[80px] border border-transparent hover:border-white/10" onclick="toggleCalendar()">
+                <span id="clock-time" class="text-xs font-bold leading-none mb-[3px] text-gray-800 dark:text-gray-100">12:00 PM</span>
+                <span id="clock-date" class="text-[10px] leading-none text-gray-700 dark:text-gray-400 font-medium">11/24/2025</span>
             </div>
         </div>
     </div>
@@ -293,20 +357,51 @@
     <script>
         // --- CONFIG & STATE ---
         const APPS = [
-            { id: 'about', name: 'About Me', icon: 'fa-solid fa-user-astronaut', color: 'text-purple-500', bg: 'bg-purple-100' },
-            { id: 'stack', name: 'Tech Stack', icon: 'fa-solid fa-layer-group', color: 'text-yellow-500', bg: 'bg-yellow-100' },
-            { id: 'projects', name: 'Projects', icon: 'fa-solid fa-rocket', color: 'text-blue-500', bg: 'bg-blue-100' },
-            { id: 'terminal', name: 'Terminal', icon: 'fas fa-terminal', color: 'text-green-400', bg: 'bg-gray-900' },
-            { id: 'calc', name: 'Calculator', icon: 'fa-solid fa-calculator', color: 'text-green-600', bg: 'bg-green-100' },
-            { id: 'contact', name: 'Contact', icon: 'fa-solid fa-envelope', color: 'text-red-500', bg: 'bg-red-100' },
-            { id: 'github', name: 'GitHub', icon: 'fa-brands fa-github', color: 'text-white', bg: 'bg-black' },
-            { id: 'browser', name: 'Edge', icon: 'fa-brands fa-edge', color: 'text-blue-400', bg: 'bg-blue-50' },
-            { id: 'settings', name: 'Settings', icon: 'fa-solid fa-gear', color: 'text-gray-500', bg: 'bg-gray-100' },
+            { id: 'about', name: 'About Me', icon: 'fa-solid fa-user-astronaut', color: 'text-purple-500', bg: 'bg-purple-100', dark: false },
+            { id: 'stack', name: 'Tech Stack', icon: 'fa-solid fa-layer-group', color: 'text-yellow-500', bg: 'bg-yellow-100', dark: false },
+            { id: 'projects', name: 'Projects', icon: 'fa-solid fa-rocket', color: 'text-blue-500', bg: 'bg-blue-100', dark: false },
+            { id: 'gallery', name: 'Gallery', icon: 'fa-solid fa-images', color: 'text-pink-500', bg: 'bg-pink-100', dark: false },
+            { id: 'terminal', name: 'Terminal', icon: 'fas fa-terminal', color: 'text-green-400', bg: 'bg-gray-900', dark: true },
+            { id: 'calc', name: 'Calculator', icon: 'fa-solid fa-calculator', color: 'text-green-600', bg: 'bg-green-100', dark: false },
+            { id: 'snake', name: 'Snake', icon: 'fa-solid fa-worm', color: 'text-green-500', bg: 'bg-green-100', dark: true },
+            { id: 'shooter', name: 'Space Shooter', icon: 'fa-solid fa-jet-fighter', color: 'text-cyan-400', bg: 'bg-cyan-900', dark: true },
+            { id: 'tictactoe', name: 'Tic Tac Toe', icon: 'fa-solid fa-xmarks-lines', color: 'text-rose-500', bg: 'bg-rose-100', dark: false },
+            { id: 'contact', name: 'Contact', icon: 'fa-solid fa-envelope', color: 'text-red-500', bg: 'bg-red-100', dark: false },
+            { id: 'github', name: 'GitHub', icon: 'fa-brands fa-github', color: 'text-white', bg: 'bg-black', dark: true },
+            { id: 'browser', name: 'Edge', icon: 'fa-brands fa-edge', color: 'text-blue-400', bg: 'bg-blue-50', dark: false },
+            { id: 'settings', name: 'Settings', icon: 'fa-solid fa-gear', color: 'text-gray-500', bg: 'bg-gray-100', dark: false },
         ];
+
+        // Gallery Data
+        const GALLERY_DATA = {
+            'photography': [
+                { src: 'My Village.jpg', caption: 'My Village' },
+                { src: 'Retro Vibes.jpg', caption: 'Retro Vibes' },
+                { src: 'Morning Of Farm.jpg', caption: 'Morning Of Farm' },
+                { src: 'Rural Morning Glow.jpg', caption: 'Rural Morning Glow' },
+                { src: 'A Quiet Bond.jpg', caption: 'A Quiet Bond' },
+                { src: 'A Path To Solitude.jpg', caption: 'A Path To Solitude' },
+                { src: 'Fading Glory.jpg', caption: 'Fading Glory' },
+                { src: 'Peaceful Green.jpg', caption: 'Peaceful Green' },
+                { src: 'The Quiet Waiting.jpg', caption: 'The Quiet Waiting' },
+                { src: 'Unlocking Secrets.jpg', caption: 'Unlocking Secrets' },
+                { src: 'Hope In Bloom.jpg', caption: 'Hope In Bloom' }
+            ],
+            'drawing': [
+                { src: 'A Fragile Freedom.jpg', caption: 'A Fragile Freedom' },
+                { src: 'Eternal Protector.jpg', caption: 'Eternal Protector' },
+                { src: 'Innocence On A Leaf.jpg', caption: 'Innocence On A Leaf' },
+                { src: 'Where Fear Cannot Exist.jpg', caption: 'Where Fear Cannot Exist' }
+            ]
+        };
 
         let windows = [];
         let highestZ = 100;
-        let isDarkMode = false;
+        let isDarkMode = true;
+        
+        // Gallery State
+        let currentGalleryFolder = 'photography';
+        let currentImageIndex = 0;
 
         // --- INITIALIZATION ---
         document.addEventListener('DOMContentLoaded', () => {
@@ -336,6 +431,15 @@
                 ctxMenu.style.top = `${e.clientY}px`;
                 ctxMenu.style.left = `${e.clientX}px`;
                 ctxMenu.classList.remove('hidden');
+            });
+            
+            // Gallery Key Listener
+            document.addEventListener('keydown', (e) => {
+                if(document.getElementById('gallery-viewer') && !document.getElementById('gallery-viewer').classList.contains('hidden')) {
+                    if(e.key === 'ArrowLeft') changeGalleryImage(-1);
+                    if(e.key === 'ArrowRight') changeGalleryImage(1);
+                    if(e.key === 'Escape') closeGalleryViewer();
+                }
             });
         });
 
@@ -372,10 +476,8 @@
             }, delay + 1000);
 
             setTimeout(() => {
-                // Fix: Reveal lock screen underneath FIRST
                 lockScreen.classList.remove('hidden');
                 updateLockScreenClock();
-                // THEN fade out boot screen to reveal it
                 bootScreen.classList.add('fade-out');
                 setTimeout(() => {
                     bootScreen.classList.add('hidden');
@@ -411,7 +513,6 @@
                 loginScreen.classList.add('fade-out');
                 setTimeout(() => {
                     loginScreen.classList.add('hidden');
-                    // Reveal Desktop UI seamlessly
                     document.getElementById('desktop-icons').classList.remove('startup-hidden');
                     document.getElementById('taskbar').classList.remove('startup-hidden');
                     openApp('about'); 
@@ -431,9 +532,9 @@
         function renderCalendar() {
             const grid = document.getElementById('calendar-grid');
             let html = '';
-            for(let i=28; i<=30; i++) html += `<span class="text-gray-400 p-2">${i}</span>`;
+            for(let i=28; i<=30; i++) html += `<span class="text-gray-400 p-2 opacity-50">${i}</span>`;
             for(let i=1; i<=31; i++) {
-                const todayClass = i === new Date().getDate() ? 'bg-blue-600 text-white font-bold rounded-full' : 'hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full dark:text-gray-200';
+                const todayClass = i === new Date().getDate() ? 'bg-blue-600 text-white font-bold rounded-full shadow-md' : 'hover:bg-gray-200 dark:hover:bg-white/20 rounded-full dark:text-gray-200 transition';
                 html += `<span class="p-2 cursor-default ${todayClass} flex items-center justify-center w-8 h-8 mx-auto text-sm">${i}</span>`;
             }
             grid.innerHTML = html;
@@ -470,9 +571,7 @@
 
         function setWallpaper(type) {
             const body = document.getElementById('desktop-body');
-            // Remove all known wallpaper classes
             body.classList.remove('bg-bloom', 'bg-mountain', 'bg-abstract', 'bg-space', 'bg-midnight');
-            // Add the new one
             body.classList.add(type);
         }
 
@@ -482,7 +581,7 @@
                 const el = document.createElement('div');
                 el.className = 'desktop-icon w-24 h-24 flex flex-col items-center justify-start pt-4 gap-2 rounded-lg cursor-pointer transition text-shadow group';
                 el.innerHTML = `
-                    <div class="w-12 h-12 flex items-center justify-center transition transform group-hover:scale-110 duration-200">
+                    <div class="w-12 h-12 flex items-center justify-center transition transform group-hover:scale-110 duration-200 bg-white/10 rounded-xl backdrop-blur-sm border border-white/10 shadow-sm">
                          <i class="${app.icon} text-4xl ${app.color} filter drop-shadow-lg"></i>
                     </div>
                     <span class="text-[11px] text-white text-center leading-tight icon-label px-1 break-words font-medium">${app.name}</span>
@@ -497,14 +596,14 @@
             APPS.forEach(app => {
                 const el = document.createElement('div');
                 el.id = `taskbar-${app.id}`;
-                el.className = 'relative h-[40px] w-[40px] flex items-center justify-center hover:bg-white/40 dark:hover:bg-white/10 rounded-md active:scale-90 transition-all duration-200 cursor-pointer group mx-0.5';
+                el.className = 'relative h-[40px] w-[40px] flex items-center justify-center hover:bg-white/40 dark:hover:bg-white/10 rounded-md active:scale-90 transition-all duration-200 cursor-pointer group mx-0.5 border border-transparent hover:border-white/10';
                 el.innerHTML = `
                     <i class="${app.icon} text-xl ${app.color} drop-shadow-sm transform group-hover:-translate-y-1 transition duration-200"></i>
                     <div class="absolute -bottom-1 w-1 h-1 bg-gray-400 rounded-full transition-all duration-300 opacity-0 group-hover:w-3" id="indicator-${app.id}"></div>
                 `;
                 el.onclick = () => handleTaskbarClick(app.id);
                 const tip = document.createElement('div');
-                tip.className = 'absolute bottom-14 bg-gray-800/90 backdrop-blur text-white text-xs px-3 py-1.5 rounded shadow-lg opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap border border-gray-700 z-[60] -translate-y-2 group-hover:translate-y-0 duration-200';
+                tip.className = 'absolute bottom-14 bg-gray-800/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded shadow-lg opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap border border-white/10 z-[60] -translate-y-2 group-hover:translate-y-0 duration-200';
                 tip.innerText = app.name;
                 el.appendChild(tip);
                 container.appendChild(el);
@@ -515,12 +614,12 @@
             const container = document.getElementById('start-menu-grid');
             APPS.forEach(app => {
                 const el = document.createElement('div');
-                el.className = 'flex flex-col items-center gap-2 p-2 hover:bg-white/60 dark:hover:bg-white/10 rounded-lg cursor-pointer transition active:scale-95';
+                el.className = 'flex flex-col items-center gap-2 p-2 hover:bg-white/40 dark:hover:bg-white/10 rounded-xl cursor-pointer transition active:scale-95 border border-transparent hover:border-white/20';
                 el.innerHTML = `
-                    <div class="w-10 h-10 flex items-center justify-center bg-white dark:bg-gray-700/50 rounded-lg shadow-sm">
+                    <div class="w-10 h-10 flex items-center justify-center bg-white/80 dark:bg-gray-700/50 rounded-xl shadow-sm backdrop-blur-sm">
                         <i class="${app.icon} text-xl ${app.color}"></i>
                     </div>
-                    <span class="text-[10px] font-medium text-center leading-tight text-gray-700 dark:text-gray-200">${app.name}</span>
+                    <span class="text-[10px] font-medium text-center leading-tight text-gray-800 dark:text-gray-100">${app.name}</span>
                 `;
                 el.onclick = () => {
                     openApp(app.id);
@@ -541,9 +640,12 @@
             const appConfig = APPS.find(a => a.id === appId);
             highestZ++;
 
+            const windowClass = appConfig.dark ? 'glass-window-dark' : 'glass-window';
+            const headerTextColor = appConfig.dark ? 'text-gray-200' : 'text-gray-800 dark:text-gray-100';
+
             const winEl = document.createElement('div');
             winEl.id = `win-${appId}`;
-            winEl.className = `window absolute flex flex-col pop-in pointer-events-auto overflow-hidden shadow-2xl rounded-xl border border-gray-200/50 dark:border-gray-700/50 bg-white/95 dark:bg-[#202020]/95 backdrop-blur-xl`;
+            winEl.className = `window absolute flex flex-col pop-in pointer-events-auto overflow-hidden rounded-xl ${windowClass}`;
             winEl.style.zIndex = highestZ;
             winEl.style.width = '900px';
             winEl.style.height = '600px';
@@ -553,18 +655,18 @@
             const contentHtml = getAppContent(appId);
 
             winEl.innerHTML = `
-                <div class="h-10 bg-transparent flex justify-between items-center px-4 select-none border-b border-gray-200/50 dark:border-gray-700/50" onmousedown="startDrag(event, '${appId}')" ondblclick="maximizeWindow('${appId}')">
-                    <div class="flex items-center gap-3 text-sm flex-1 h-full text-gray-700 dark:text-gray-200">
-                        <i class="${appConfig.icon} ${appConfig.color}"></i>
-                        <span class="font-medium ml-1 tracking-wide">${appConfig.name}</span>
+                <div class="h-10 bg-transparent flex justify-between items-center px-4 select-none border-b border-white/10" onmousedown="startDrag(event, '${appId}')" ondblclick="maximizeWindow('${appId}')">
+                    <div class="flex items-center gap-3 text-sm flex-1 h-full ${headerTextColor}">
+                        <i class="${appConfig.icon} ${appConfig.color} drop-shadow-sm"></i>
+                        <span class="font-bold ml-1 tracking-wide opacity-90">${appConfig.name}</span>
                     </div>
                     <div class="flex items-center gap-2 h-full">
-                        <div class="p-1.5 hover:bg-gray-200 dark:hover:bg-white/10 rounded transition cursor-pointer" onclick="minimizeWindow('${appId}')"><i class="fas fa-minus text-[10px]"></i></div>
-                        <div class="p-1.5 hover:bg-gray-200 dark:hover:bg-white/10 rounded transition cursor-pointer" onclick="maximizeWindow('${appId}')"><i class="far fa-square text-[10px]"></i></div>
-                        <div class="p-1.5 hover:bg-red-500 hover:text-white rounded transition cursor-pointer" onclick="closeWindow('${appId}')"><i class="fas fa-times text-sm"></i></div>
+                        <div class="p-1.5 hover:bg-white/20 rounded-full transition cursor-pointer" onclick="minimizeWindow('${appId}')"><i class="fas fa-minus text-[10px] ${headerTextColor}"></i></div>
+                        <div class="p-1.5 hover:bg-white/20 rounded-full transition cursor-pointer" onclick="maximizeWindow('${appId}')"><i class="far fa-square text-[10px] ${headerTextColor}"></i></div>
+                        <div class="p-1.5 hover:bg-red-500 hover:text-white rounded-full transition cursor-pointer group" onclick="closeWindow('${appId}')"><i class="fas fa-times text-sm opacity-70 group-hover:opacity-100 ${headerTextColor} group-hover:text-white"></i></div>
                     </div>
                 </div>
-                <div class="flex-1 relative overflow-hidden flex flex-col bg-gray-50/50 dark:bg-[#151515]/50" onmousedown="bringToFront('${appId}')">
+                <div class="flex-1 relative overflow-hidden flex flex-col" onmousedown="bringToFront('${appId}')">
                     ${contentHtml}
                 </div>
                 <div class="absolute bottom-0 right-0 w-5 h-5 cursor-se-resize z-20 bg-transparent" onmousedown="startResize(event, '${appId}')"></div>
@@ -574,6 +676,11 @@
             
             windows.push({ id: appId, el: winEl, minimized: false, maximized: false, prevStyles: {} });
             updateTaskbarIndicator(appId, true);
+
+            if(appId === 'snake') setTimeout(startSnakeGame, 100);
+            if(appId === 'shooter') setTimeout(startShooterGame, 100);
+            if(appId === 'gallery') setTimeout(() => renderGallery('photography'), 50); // Init gallery
+            if(appId === 'tictactoe') setTimeout(resetTicTacToe, 50); // Init Tic Tac Toe
         }
 
         function closeWindow(id) {
@@ -581,6 +688,10 @@
             if (win) {
                 win.el.style.transform = 'scale(0.9)';
                 win.el.style.opacity = '0';
+                
+                if(id === 'snake') stopSnakeGame();
+                if(id === 'shooter') stopShooterGame();
+
                 setTimeout(() => {
                     win.el.remove();
                     windows = windows.filter(w => w.id !== id);
@@ -666,7 +777,7 @@
         let dragOffset = { x: 0, y: 0 };
 
         function startDrag(e, id) {
-            if (e.target.closest('.hover\\:bg-red-500') || e.target.closest('.hover\\:bg-gray-200')) return;
+            if (e.target.closest('.hover\\:bg-red-500') || e.target.closest('.hover\\:bg-white\\/20')) return;
             const win = windows.find(w => w.id === id);
             if (win && !win.maximized) {
                 isDragging = true;
@@ -698,19 +809,80 @@
 
         document.addEventListener('mouseup', () => { isDragging = false; isResizing = false; dragTarget = null; });
 
+        // --- GALLERY FUNCTIONS ---
+        function renderGallery(folder) {
+            currentGalleryFolder = folder;
+            const container = document.getElementById('gallery-grid');
+            if(!container) return;
+            
+            // Highlight Active Tab
+            document.querySelectorAll('.gallery-tab').forEach(el => {
+                if(el.dataset.folder === folder) {
+                    el.classList.add('bg-blue-500', 'text-white');
+                    el.classList.remove('hover:bg-white/20');
+                } else {
+                    el.classList.remove('bg-blue-500', 'text-white');
+                    el.classList.add('hover:bg-white/20');
+                }
+            });
+
+            const images = GALLERY_DATA[folder];
+            let html = '';
+            images.forEach((img, idx) => {
+                html += `
+                    <div class="aspect-square overflow-hidden rounded-lg cursor-pointer group relative shadow-sm border border-gray-200 dark:border-gray-700" onclick="openGalleryViewer(${idx})">
+                        <img src="${img.src}" onerror="this.src='https://via.placeholder.com/300?text=Image+Not+Found'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                            <span class="text-white text-sm font-medium drop-shadow-md truncate w-full">${img.caption}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function openGalleryViewer(index) {
+            currentImageIndex = index;
+            const viewer = document.getElementById('gallery-viewer');
+            const img = document.getElementById('gallery-viewer-img');
+            const caption = document.getElementById('gallery-viewer-caption');
+            const currentData = GALLERY_DATA[currentGalleryFolder];
+
+            if(currentData && currentData[index]) {
+                img.src = currentData[index].src;
+                // Add error handling for viewer image
+                img.onerror = function() { this.src = 'https://via.placeholder.com/600x400?text=Image+Not+Found'; };
+                caption.innerText = currentData[index].caption;
+                viewer.classList.remove('hidden');
+            }
+        }
+
+        function closeGalleryViewer() {
+            document.getElementById('gallery-viewer').classList.add('hidden');
+        }
+
+        function changeGalleryImage(direction) {
+            const currentData = GALLERY_DATA[currentGalleryFolder];
+            let newIndex = currentImageIndex + direction;
+            if (newIndex < 0) newIndex = currentData.length - 1;
+            if (newIndex >= currentData.length) newIndex = 0;
+            openGalleryViewer(newIndex);
+        }
+
         // --- SETTINGS CONTENT SWAPPER ---
         function switchSettingsTab(tab) {
             const content = document.getElementById('settings-content');
             const tabs = document.querySelectorAll('.settings-tab');
-            tabs.forEach(t => t.classList.remove('bg-gray-200', 'dark:bg-gray-700'));
-            document.getElementById('tab-'+tab).classList.add('bg-gray-200', 'dark:bg-gray-700');
+            tabs.forEach(t => t.classList.remove('bg-white/50', 'dark:bg-white/10'));
+            document.getElementById('tab-'+tab).classList.add('bg-white/50', 'dark:bg-white/10');
 
             if (tab === 'personalization') {
+                const btnText = isDarkMode ? 'Disable Dark Mode' : 'Enable Dark Mode';
                 content.innerHTML = `
-                    <h2 class="text-3xl font-light mb-8">Personalization</h2>
+                    <h2 class="text-3xl font-light mb-8 drop-shadow-sm">Personalization</h2>
                     <div class="mb-8">
-                        <h3 class="font-medium mb-4 text-sm text-gray-500 uppercase tracking-wider">Desktop Background</h3>
-                        <div class="flex gap-4">
+                        <h3 class="font-bold mb-4 text-sm text-gray-500 uppercase tracking-wider">Desktop Background</h3>
+                        <div class="flex gap-4 flex-wrap">
                             <div onclick="setWallpaper('bg-space')" class="w-32 h-20 bg-space bg-cover rounded-lg cursor-pointer ring-2 ring-transparent hover:ring-blue-500 shadow-sm transition hover:scale-105" title="Space"></div>
                             <div onclick="setWallpaper('bg-midnight')" class="w-32 h-20 bg-midnight bg-cover rounded-lg cursor-pointer ring-2 ring-transparent hover:ring-blue-500 shadow-sm transition hover:scale-105" title="Midnight"></div>
                             <div onclick="setWallpaper('bg-bloom')" class="w-32 h-20 bg-bloom bg-cover rounded-lg cursor-pointer ring-2 ring-transparent hover:ring-blue-500 shadow-sm transition hover:scale-105" title="Bloom"></div>
@@ -719,36 +891,36 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="font-medium mb-4 text-sm text-gray-500 uppercase tracking-wider">Theme</h3>
-                        <div class="bg-white dark:bg-[#1a1a1a] p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 flex justify-between items-center">
+                        <h3 class="font-bold mb-4 text-sm text-gray-500 uppercase tracking-wider">Theme</h3>
+                        <div class="bg-white/40 dark:bg-white/5 p-6 rounded-xl shadow-sm border border-white/20 flex justify-between items-center backdrop-blur-sm">
                             <div>
                                 <h3 class="font-bold mb-1">Dark Mode</h3>
-                                <p class="text-xs text-gray-500">Toggle system-wide dark appearance.</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">Toggle system-wide dark appearance.</p>
                             </div>
-                            <button id="dm-toggle-btn" onclick="toggleDarkMode()" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition text-sm font-bold shadow-md shadow-blue-500/30">Switch Mode</button>
+                            <button id="dm-toggle-btn" onclick="toggleDarkMode()" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition text-sm font-bold shadow-lg shadow-blue-500/30">${btnText}</button>
                         </div>
                     </div>`;
             } else if (tab === 'system') {
                 content.innerHTML = `
-                    <h2 class="text-3xl font-light mb-8">System</h2>
+                    <h2 class="text-3xl font-light mb-8 drop-shadow-sm">System</h2>
                     <div class="space-y-4">
-                        <div class="bg-white dark:bg-[#1a1a1a] p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800">
+                        <div class="bg-white/40 dark:bg-white/5 p-6 rounded-xl shadow-sm border border-white/20 backdrop-blur-sm">
                             <h3 class="font-bold mb-1">Display Resolution</h3>
-                            <p class="text-xs text-gray-500">1920 x 1080 (Recommended)</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">1920 x 1080 (Recommended)</p>
                         </div>
-                        <div class="bg-white dark:bg-[#1a1a1a] p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800">
+                        <div class="bg-white/40 dark:bg-white/5 p-6 rounded-xl shadow-sm border border-white/20 backdrop-blur-sm">
                             <h3 class="font-bold mb-1">About</h3>
-                            <p class="text-xs text-gray-500">Portfolio OS 11. Version 22H2.</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Portfolio OS 11. Version 22H2.</p>
                         </div>
                     </div>`;
             } else if (tab === 'sound') {
                 content.innerHTML = `
-                    <h2 class="text-3xl font-light mb-8">Sound</h2>
-                    <div class="bg-white dark:bg-[#1a1a1a] p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800">
+                    <h2 class="text-3xl font-light mb-8 drop-shadow-sm">Sound</h2>
+                    <div class="bg-white/40 dark:bg-white/5 p-6 rounded-xl shadow-sm border border-white/20 backdrop-blur-sm">
                         <h3 class="font-bold mb-4">Output</h3>
                         <div class="flex items-center gap-4">
                             <i class="fas fa-volume-up text-2xl text-gray-500"></i>
-                            <input type="range" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                            <input type="range" class="w-full h-2 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer">
                         </div>
                     </div>`;
             }
@@ -808,21 +980,215 @@
 
         function getAppContent(id) {
             switch (id) {
+                case 'browser':
+                    return `
+                        <div class="flex flex-col h-full bg-white dark:bg-gray-800">
+                            <!-- Browser Toolbar -->
+                            <div class="flex items-center gap-2 p-2 bg-gray-100 dark:bg-[#2b2b2b] border-b border-gray-300 dark:border-gray-700">
+                                <button class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300" onclick="document.getElementById('edge-frame').contentWindow.history.back()"><i class="fas fa-arrow-left"></i></button>
+                                <button class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300" onclick="document.getElementById('edge-frame').contentWindow.history.forward()"><i class="fas fa-arrow-right"></i></button>
+                                <button class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300" onclick="edgeNavigate()"><i class="fas fa-rotate-right"></i></button>
+                                
+                                <div class="flex-1 flex items-center bg-white dark:bg-[#1f1f1f] rounded-full px-4 py-1.5 border border-gray-300 dark:border-gray-600 focus-within:ring-2 focus-within:ring-blue-500/50">
+                                    <i class="fas fa-lock text-xs text-green-600 mr-2"></i>
+                                    <input type="text" id="edge-url" class="flex-1 bg-transparent outline-none text-sm text-gray-800 dark:text-gray-200" value="https://bing.com" onkeydown="if(event.key === 'Enter') edgeNavigate()">
+                                </div>
+                                <button class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                            <!-- Browser Content -->
+                            <div class="flex-1 relative bg-white dark:bg-[#202020]">
+                                <iframe id="edge-frame" src="https://www.bing.com/search?q=Harshal+Patel+Portfolio" class="w-full h-full border-none" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+                            </div>
+                        </div>
+                    `;
+
+                case 'github':
+                    return `
+                        <div class="flex flex-col h-full bg-[#0d1117] text-[#c9d1d9] font-sans overflow-hidden">
+                            <!-- GitHub Header -->
+                            <div class="flex items-center gap-4 px-6 py-4 bg-[#161b22] border-b border-[#30363d]">
+                                <i class="fab fa-github text-3xl text-white"></i>
+                                <div class="relative">
+                                    <input type="text" placeholder="Type / to search" class="bg-[#0d1117] border border-[#30363d] rounded-md px-3 py-1 text-sm w-64 text-[#c9d1d9] focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                </div>
+                                <div class="flex-1"></div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-plus text-[#c9d1d9] hover:text-white cursor-pointer"></i>
+                                    <i class="far fa-dot-circle text-[#c9d1d9] hover:text-white cursor-pointer"></i>
+                                    <i class="fas fa-code-branch text-[#c9d1d9] hover:text-white cursor-pointer"></i>
+                                    <img src="Profile_Photo.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Harshal+Patel&background=random'" class="w-5 h-5 rounded-full border border-[#30363d]">
+                                </div>
+                            </div>
+                            
+                            <!-- GitHub Navigation Tabs -->
+                            <div class="flex items-center px-6 border-b border-[#30363d] bg-[#0d1117] sticky top-0 z-10 pt-4 gap-6 text-sm overflow-x-auto">
+                                <div class="flex items-center gap-2 pb-3 border-b-2 border-[#f78166] font-semibold text-[#c9d1d9] cursor-pointer">
+                                    <i class="fas fa-book-open"></i> Overview
+                                </div>
+                                <div class="flex items-center gap-2 pb-3 border-b-2 border-transparent hover:border-[#8b949e] text-[#8b949e] hover:text-[#c9d1d9] cursor-pointer transition">
+                                    <i class="fas fa-book"></i> Repositories <span class="bg-[#30363d] text-[#c9d1d9] px-2 rounded-full text-xs">16</span>
+                                </div>
+                                <div class="flex items-center gap-2 pb-3 border-b-2 border-transparent hover:border-[#8b949e] text-[#8b949e] hover:text-[#c9d1d9] cursor-pointer transition">
+                                    <i class="fas fa-chart-bar"></i> Projects
+                                </div>
+                                <div class="flex items-center gap-2 pb-3 border-b-2 border-transparent hover:border-[#8b949e] text-[#8b949e] hover:text-[#c9d1d9] cursor-pointer transition">
+                                    <i class="fas fa-cube"></i> Packages
+                                </div>
+                                <div class="flex items-center gap-2 pb-3 border-b-2 border-transparent hover:border-[#8b949e] text-[#8b949e] hover:text-[#c9d1d9] cursor-pointer transition">
+                                    <i class="far fa-star"></i> Stars <span class="bg-[#30363d] text-[#c9d1d9] px-2 rounded-full text-xs">1</span>
+                                </div>
+                            </div>
+
+                            <!-- GitHub Content Body -->
+                            <div class="flex flex-1 overflow-auto p-6 md:px-12 lg:px-24 gap-8">
+                                <!-- Sidebar (Left) -->
+                                <div class="w-full md:w-1/4 lg:w-1/5 flex flex-col gap-4">
+                                    <div class="relative group cursor-pointer -mt-8 md:-mt-12">
+                                        <img src="Profile_Photo.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Harshal+Patel&background=random'" class="w-full aspect-square rounded-full border border-[#30363d] shadow-lg z-10 relative bg-[#0d1117]">
+                                        <div class="absolute bottom-10 right-0 bg-[#21262d] rounded-full p-2 border border-[#30363d] text-[#c9d1d9] hover:text-[#58a6ff] transition z-20">
+                                            <i class="far fa-smile"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <h1 class="text-2xl font-bold text-[#c9d1d9]">Harshal Patel</h1>
+                                        <div class="text-[#8b949e] text-xl font-light">Harshal-Patel-In <span class="text-base">· he/him</span></div>
+                                    </div>
+                                    
+                                    <button class="w-full bg-[#21262d] border border-[rgba(240,246,252,0.1)] text-[#c9d1d9] font-bold py-1.5 rounded-md hover:bg-[#30363d] hover:border-[#8b949e] transition text-sm">Edit profile</button>
+                                    
+                                    <div class="text-[#c9d1d9] text-sm space-y-2 mt-2">
+                                        <div class="flex items-center gap-2"><i class="far fa-clock"></i> 13:00 (UTC +05:30)</div>
+                                        <div class="flex items-center gap-2 hover:text-[#58a6ff] cursor-pointer truncate"><i class="far fa-envelope"></i> harshalpatel2547@gmail.com</div>
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <h3 class="font-bold text-[#c9d1d9] mb-2">Achievements</h3>
+                                        <div class="flex gap-1">
+                                            <img src="https://github.githubassets.com/assets/yolo-default-be0bbff04951.png" class="w-16 h-16" title="YOLO">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Main Content (Right) -->
+                                <div class="flex-1">
+                                    <div class="p-4 border border-[#30363d] rounded-md mb-8 bg-[#0d1117]">
+                                        <div class="text-xs font-mono text-[#8b949e] mb-2">Harshal-Patel-In / README.md <i class="fas fa-pencil-alt float-right cursor-pointer hover:text-[#58a6ff]"></i></div>
+                                        <div class="text-[#c9d1d9] text-sm leading-relaxed space-y-1">
+                                            <div>👋 Hi, I'm @Harshal-Patel-In</div>
+                                            <div>👀 I'm interested in AI</div>
+                                            <div>🌱 I'm currently learning Computer Science</div>
+                                            <div>💞️ I'm looking to collaborate on AI-ML projects</div>
+                                            <div>📫 How to reach me 📧 <a href="#" class="text-[#58a6ff] hover:underline">harshalpatel0210@gmail.com</a></div>
+                                            <div>😄 Pronouns: Any Name You Like 👍</div>
+                                            <div>⚡ Fun fact: I am also intersted in Photography and Drawing.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex justify-between items-end mb-4">
+                                        <h2 class="text-base font-normal text-[#c9d1d9]">Popular repositories</h2>
+                                        <span class="text-xs text-[#58a6ff] hover:underline cursor-pointer">Customize your pins</span>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <!-- Repo 1 -->
+                                        <div class="p-4 border border-[#30363d] rounded-md bg-[#0d1117] flex flex-col justify-between h-32 hover:border-[#8b949e] transition cursor-pointer">
+                                            <div>
+                                                <div class="flex justify-between items-center mb-1">
+                                                    <a href="https://graphy-2025.streamlit.app/" target="_blank" class="text-[#58a6ff] font-bold hover:underline">Graphy</a>
+                                                    <span class="text-xs border border-[#30363d] rounded-full px-2 py-0.5 text-[#8b949e]">Public</span>
+                                                </div>
+                                                <div class="text-xs text-[#8b949e]">This Is Graph Visualizer And QnA Bot App</div>
+                                            </div>
+                                            <div class="flex items-center gap-4 text-xs text-[#8b949e] mt-2">
+                                                <div class="flex items-center gap-1"><span class="gh-repo-lang-color bg-[#3572A5]"></span> Python</div>
+                                                <div class="flex items-center gap-1"><i class="far fa-star"></i> 1</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Repo 2 -->
+                                        <div class="p-4 border border-[#30363d] rounded-md bg-[#0d1117] flex flex-col justify-between h-32 hover:border-[#8b949e] transition cursor-pointer">
+                                            <div>
+                                                <div class="flex justify-between items-center mb-1">
+                                                    <a href="#" class="text-[#58a6ff] font-bold hover:underline">Harshal-Patel-In</a>
+                                                    <span class="text-xs border border-[#30363d] rounded-full px-2 py-0.5 text-[#8b949e]">Public</span>
+                                                </div>
+                                                <div class="text-xs text-[#8b949e]">Config files for my GitHub profile.</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Repo 3 -->
+                                        <div class="p-4 border border-[#30363d] rounded-md bg-[#0d1117] flex flex-col justify-between h-32 hover:border-[#8b949e] transition cursor-pointer">
+                                            <div>
+                                                <div class="flex justify-between items-center mb-1">
+                                                    <a href="#" class="text-[#58a6ff] font-bold hover:underline">GeoH2</a>
+                                                    <span class="text-xs border border-[#30363d] rounded-full px-2 py-0.5 text-[#8b949e]">Public</span>
+                                                </div>
+                                                <div class="text-xs text-[#8b949e] mb-1">Forked from <a href="#" class="hover:underline">ClimateCompatibleGrowth/GeoH2</a></div>
+                                                <div class="text-xs text-[#8b949e]">Geospatial analysis of green hydrogen production costs.</div>
+                                            </div>
+                                            <div class="flex items-center gap-4 text-xs text-[#8b949e] mt-2">
+                                                <div class="flex items-center gap-1"><span class="gh-repo-lang-color bg-[#3572A5]"></span> Python</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Repo 4 -->
+                                        <div class="p-4 border border-[#30363d] rounded-md bg-[#0d1117] flex flex-col justify-between h-32 hover:border-[#8b949e] transition cursor-pointer">
+                                            <div>
+                                                <div class="flex justify-between items-center mb-1">
+                                                    <a href="#" class="text-[#58a6ff] font-bold hover:underline">urban-h2-navigator</a>
+                                                    <span class="text-xs border border-[#30363d] rounded-full px-2 py-0.5 text-[#8b949e]">Public</span>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-4 text-xs text-[#8b949e] mt-2">
+                                                <div class="flex items-center gap-1"><span class="gh-repo-lang-color bg-[#2b7489]"></span> TypeScript</div>
+                                                <div class="flex items-center gap-1"><i class="fas fa-code-branch"></i> 2</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Repo 5 -->
+                                        <div class="p-4 border border-[#30363d] rounded-md bg-[#0d1117] flex flex-col justify-between h-32 hover:border-[#8b949e] transition cursor-pointer">
+                                            <div>
+                                                <div class="flex justify-between items-center mb-1">
+                                                    <a href="#" class="text-[#58a6ff] font-bold hover:underline">guvnl-feedback-app</a>
+                                                    <span class="text-xs border border-[#30363d] rounded-full px-2 py-0.5 text-[#8b949e]">Public</span>
+                                                </div>
+                                                <div class="text-xs text-[#8b949e] mb-1">Forked from <a href="#" class="hover:underline">kunj-31/guvnl-feedback-app</a></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Repo 6 -->
+                                        <div class="p-4 border border-[#30363d] rounded-md bg-[#0d1117] flex flex-col justify-between h-32 hover:border-[#8b949e] transition cursor-pointer">
+                                            <div>
+                                                <div class="flex justify-between items-center mb-1">
+                                                    <a href="#" class="text-[#58a6ff] font-bold hover:underline">SSIP</a>
+                                                    <span class="text-xs border border-[#30363d] rounded-full px-2 py-0.5 text-[#8b949e]">Public</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
                 case 'settings':
                     setTimeout(() => switchSettingsTab('personalization'), 0);
                     return `
-                        <div class="flex h-full bg-[#f3f3f3] dark:bg-[#121212] text-gray-900 dark:text-white">
-                            <div class="w-64 bg-white dark:bg-[#1a1a1a] p-4 flex flex-col gap-1 text-sm border-r border-gray-200 dark:border-gray-800">
-                                <div class="flex items-center gap-3 p-2 mb-6 bg-gray-100 dark:bg-gray-800 rounded-lg">
-                                    <img src="https://ui-avatars.com/api/?name=Harshal+Patel&background=0078d4&color=fff" class="rounded-full w-10 h-10">
-                                    <div><div class="font-bold">Harshal Patel</div><div class="text-xs text-gray-500">Local Account</div></div>
+                        <div class="flex h-full text-gray-900 dark:text-white">
+                            <!-- Glass Sidebar -->
+                            <div class="w-64 bg-white/40 dark:bg-black/20 p-4 flex flex-col gap-1 text-sm border-r border-gray-200/50 dark:border-gray-700/50 backdrop-blur-md">
+                                <div class="flex items-center gap-3 p-2 mb-6 bg-white/30 dark:bg-white/5 rounded-lg border border-white/20">
+                                    <img src="Profile_Photo.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Harshal+Patel&background=random'" class="rounded-full w-10 h-10 shadow-sm object-cover">
+                                    <div><div class="font-bold">Harshal Patel</div><div class="text-xs text-gray-500 dark:text-gray-400">Local Account</div></div>
                                 </div>
                                 <div class="font-bold text-gray-500 text-xs px-2 mb-2 uppercase tracking-wider">System</div>
-                                <div id="tab-system" onclick="switchSettingsTab('system')" class="settings-tab p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md cursor-pointer flex items-center gap-3"><i class="fas fa-desktop w-5"></i> Display</div>
-                                <div id="tab-sound" onclick="switchSettingsTab('sound')" class="settings-tab p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md cursor-pointer flex items-center gap-3"><i class="fas fa-volume-up w-5 text-gray-500"></i> Sound</div>
-                                <div id="tab-personalization" onclick="switchSettingsTab('personalization')" class="settings-tab p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md cursor-pointer flex items-center gap-3"><i class="fas fa-paint-brush w-5 text-gray-500"></i> Personalization</div>
+                                <div id="tab-system" onclick="switchSettingsTab('system')" class="settings-tab p-2 hover:bg-white/40 dark:hover:bg-white/10 rounded-md cursor-pointer flex items-center gap-3 transition"><i class="fas fa-desktop w-5"></i> Display</div>
+                                <div id="tab-sound" onclick="switchSettingsTab('sound')" class="settings-tab p-2 hover:bg-white/40 dark:hover:bg-white/10 rounded-md cursor-pointer flex items-center gap-3 transition"><i class="fas fa-volume-up w-5 text-gray-500"></i> Sound</div>
+                                <div id="tab-personalization" onclick="switchSettingsTab('personalization')" class="settings-tab p-2 hover:bg-white/40 dark:hover:bg-white/10 rounded-md cursor-pointer flex items-center gap-3 transition"><i class="fas fa-paint-brush w-5 text-gray-500"></i> Personalization</div>
                             </div>
-                            <div class="flex-1 p-10 overflow-auto" id="settings-content">
+                            <!-- Content Area (More Opaque) -->
+                            <div class="flex-1 p-10 overflow-auto bg-white/60 dark:bg-[#121212]/80 backdrop-blur-3xl" id="settings-content">
                                 <!-- Content injected via switchSettingsTab -->
                             </div>
                         </div>`;
@@ -863,15 +1229,15 @@
                         }
                     }, 100);
                     return `
-                        <div class="h-full bg-black text-white font-mono p-4 text-sm flex flex-col" onclick="document.getElementById('term-input').focus()">
+                        <div class="h-full bg-black/90 backdrop-blur-md text-white font-mono p-4 text-sm flex flex-col" onclick="document.getElementById('term-input').focus()">
                             <div class="flex-1 overflow-auto" id="term-container">
-                                <pre class="text-[#00ff00] font-bold leading-tight mb-6 text-[10px] sm:text-xs md:text-sm whitespace-pre overflow-x-hidden">
-  _    _               _           _   _____      _       _ 
- | |  | |             | |         | | |  __ \\    | |     | |
- | |__| | __ _ _ __ __| |__   __ _| | | |__) |___| |_ ___| |
- |  __  |/ _\` | '__/ __| '_ \\ / _\` | | |  ___/ _\` | __/ _ \\ |
- | |  | | (_| | |  \\__ \\ | | | (_| | | | |  | (_| | ||  __/ |
- |_|  |_|\\__,_|_|  |___/_| |_|\\__,_|_| |_|   \\__,_|\\__\\___|_|
+                                <pre class="text-[#00ff00] font-bold leading-tight mb-6 text-[6px] sm:text-[8px] md:text-xs whitespace-pre overflow-x-hidden select-none">
+██╗  ██╗ █████╗ ██████╗ ███████╗██╗  ██╗ █████╗ ██╗      ██████╗  █████╗ ████████╗███████╗██╗
+██║  ██║██╔══██╗██╔══██╗██╔════╝██║  ██║██╔══██╗██║      ██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██║
+███████║███████║██████╔╝███████╗███████║███████║██║      ██████╔╝███████║   ██║   █████╗  ██║
+██╔══██║██╔══██║██╔══██╗╚════██║██╔══██║██╔══██║██║      ██╔═══╝ ██╔══██║   ██║   ██╔══╝  ██║
+██║  ██║██║  ██║██║  ██║███████║██║  ██║██║  ██║███████╗ ██║     ██║  ██║   ██║   ███████╗███████╗
+╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝ ╚═╝     ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚══════╝
                                 </pre>
                                 <div class="text-[#fcd34d] mb-4 font-bold">👊 (hello) 👋 GLAD TO MEET YOU STRANGER 👋 <(code)></div>
                                 <div class="text-green-400 mb-4">TYPE "HELP" FOR FULL LIST OF COMMANDS</div>
@@ -887,50 +1253,52 @@
                 case 'about':
                     return `
                         <div class="flex h-full">
-                            <div class="w-1/3 bg-gray-100 dark:bg-[#1a1a1a] p-8 flex flex-col items-center text-center border-r border-gray-200 dark:border-gray-700">
-                                <div class="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1 mb-4 shadow-lg">
-                                    <img src="https://ui-avatars.com/api/?name=Harshal+Patel&background=111&color=fff" class="w-full h-full rounded-full border-4 border-white dark:border-gray-800">
+                            <!-- Glass Sidebar -->
+                            <div class="w-1/3 bg-white/40 dark:bg-black/20 p-8 flex flex-col items-center text-center border-r border-gray-200/50 dark:border-gray-700/50 backdrop-blur-md">
+                                <div class="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1 mb-4 shadow-xl">
+                                    <img src="Profile_Photo.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Harshal+Patel&background=random'" class="w-full h-full rounded-full border-4 border-white dark:border-gray-800 object-cover">
                                 </div>
-                                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Harshal Patel</h1>
-                                <p class="text-blue-500 font-medium mb-6">Full Stack Developer</p>
+                                <h1 class="text-2xl font-bold text-gray-900 dark:text-white drop-shadow-sm">Harshal Patel</h1>
+                                <p class="text-blue-600 dark:text-blue-400 font-medium mb-6">Full Stack Developer</p>
                                 
                                 <div class="flex gap-3 mb-8">
-                                    <div class="w-10 h-10 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm hover:text-blue-500 transition cursor-pointer" onclick="openApp('github')"><i class="fab fa-github text-xl"></i></div>
-                                    <div class="w-10 h-10 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm hover:text-blue-700 transition cursor-pointer" onclick="window.open('https://www.linkedin.com/in/harshal-patel-2547har', '_blank')"><i class="fab fa-linkedin text-xl"></i></div>
-                                    <div class="w-10 h-10 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm hover:text-red-500 transition cursor-pointer" onclick="openApp('contact')"><i class="fas fa-envelope text-xl"></i></div>
+                                    <div class="w-10 h-10 rounded-full bg-white/70 dark:bg-white/10 flex items-center justify-center shadow-md hover:text-blue-500 transition cursor-pointer hover:scale-110" onclick="openApp('github')"><i class="fab fa-github text-xl"></i></div>
+                                    <div class="w-10 h-10 rounded-full bg-white/70 dark:bg-white/10 flex items-center justify-center shadow-md hover:text-blue-700 transition cursor-pointer hover:scale-110" onclick="window.open('https://www.linkedin.com/in/harshal-patel-2547har', '_blank')"><i class="fab fa-linkedin text-xl"></i></div>
+                                    <div class="w-10 h-10 rounded-full bg-white/70 dark:bg-white/10 flex items-center justify-center shadow-md hover:text-red-500 transition cursor-pointer hover:scale-110" onclick="openApp('contact')"><i class="fas fa-envelope text-xl"></i></div>
                                 </div>
 
-                                <button onclick="openApp('contact')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition shadow-md">Contact Me</button>
+                                <button onclick="openApp('contact')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition shadow-lg transform hover:-translate-y-0.5">Contact Me</button>
                             </div>
-                            <div class="flex-1 p-10 overflow-auto bg-white dark:bg-[#121212] text-gray-800 dark:text-gray-300">
+                            <!-- Content Area -->
+                            <div class="flex-1 p-10 overflow-auto bg-white/60 dark:bg-[#121212]/80 backdrop-blur-3xl text-gray-800 dark:text-gray-300">
                                 <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Hello, I'm Harshal! 👋</h2>
-                                <p class="text-lg leading-relaxed mb-6">I'm @Harshal-Patel-In, a passionate software engineer interested in AI and currently learning Computer Science. This portfolio is actually a functional web app built with <span class="text-orange-500 font-bold">HTML</span>, <span class="text-blue-500 font-bold">CSS</span> & <span class="text-yellow-500 font-bold">JavaScript</span>.</p>
-                                <p class="text-lg leading-relaxed mb-8">I specialize in creating high-performance frontends and robust backends. When I'm not coding, I'm also interested in Photography and Drawing.</p>
+                                <p class="text-lg leading-relaxed mb-6 font-medium">I'm @Harshal-Patel-In, a passionate software engineer interested in AI and currently learning Computer Science. This portfolio is actually a functional web app built with <span class="text-orange-600 font-bold">HTML</span>, <span class="text-blue-600 font-bold">CSS</span> & <span class="text-yellow-600 font-bold">JavaScript</span>.</p>
+                                <p class="text-lg leading-relaxed mb-8 font-medium">I specialize in creating high-performance frontends and robust backends. When I'm not coding, I'm also interested in Photography and Drawing.</p>
                                 
-                                <h3 class="text-xl font-bold mb-4 border-b dark:border-gray-700 pb-2">What I Do</h3>
+                                <h3 class="text-xl font-bold mb-4 border-b border-gray-300/50 dark:border-gray-700 pb-2">What I Do</h3>
                                 <div class="grid grid-cols-2 gap-4">
-                                    <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700">
+                                    <div class="p-4 bg-white/50 dark:bg-white/5 rounded-xl border border-white/40 dark:border-white/10 shadow-sm backdrop-blur-sm">
                                         <i class="fas fa-code text-blue-500 mb-2 text-xl"></i>
                                         <h4 class="font-bold text-gray-900 dark:text-white">Web Development</h4>
-                                        <p class="text-sm text-gray-500">HTML, CSS, JS</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">HTML, CSS, JS</p>
                                     </div>
-                                    <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700">
+                                    <div class="p-4 bg-white/50 dark:bg-white/5 rounded-xl border border-white/40 dark:border-white/10 shadow-sm backdrop-blur-sm">
                                         <i class="fas fa-brain text-green-500 mb-2 text-xl"></i>
                                         <h4 class="font-bold text-gray-900 dark:text-white">Data Science & AI</h4>
-                                        <p class="text-sm text-gray-500">Python, Pandas, Sklearn</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Python, Pandas, Sklearn</p>
                                     </div>
                                 </div>
 
-                                <h3 class="text-xl font-bold mb-4 mt-8 border-b dark:border-gray-700 pb-2">Tech Stack</h3>
+                                <h3 class="text-xl font-bold mb-4 mt-8 border-b border-gray-300/50 dark:border-gray-700 pb-2">Tech Stack</h3>
                                 <div class="grid grid-cols-4 gap-4">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="w-12 h-12" title="HTML5">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="w-12 h-12" title="CSS3">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-12 h-12" title="JavaScript">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-12 h-12" title="Python">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="w-12 h-12" title="Java">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" class="w-12 h-12" title="Pandas">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" class="w-12 h-12" title="NumPy">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" class="w-12 h-12" title="Scikit-learn">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="w-12 h-12 hover:scale-110 transition" title="HTML5">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="w-12 h-12 hover:scale-110 transition" title="CSS3">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-12 h-12 hover:scale-110 transition" title="JavaScript">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-12 h-12 hover:scale-110 transition" title="Python">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="w-12 h-12 hover:scale-110 transition" title="Java">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" class="w-12 h-12 hover:scale-110 transition" title="Pandas">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" class="w-12 h-12 hover:scale-110 transition" title="NumPy">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" class="w-12 h-12 hover:scale-110 transition" title="Scikit-learn">
                                 </div>
                             </div>
                         </div>`;
@@ -951,173 +1319,171 @@
                     let grid = '';
                     techLogos.forEach(t => { 
                         grid += `
-                        <div class="flex flex-col items-center justify-center p-6 rounded-xl bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition cursor-default group">
-                            <img src="${t.i}" class="w-16 h-16 mb-4 transition group-hover:scale-110">
-                            <span class="font-bold text-gray-700 dark:text-gray-200">${t.n}</span>
+                        <div class="flex flex-col items-center justify-center p-6 rounded-xl bg-white/60 dark:bg-white/5 shadow-sm border border-white/40 dark:border-white/10 hover:shadow-lg transition cursor-default group backdrop-blur-sm">
+                            <img src="${t.i}" class="w-16 h-16 mb-4 transition group-hover:scale-110 filter drop-shadow-md">
+                            <span class="font-bold text-gray-800 dark:text-gray-200">${t.n}</span>
                         </div>`; 
                     });
-                    return `<div class="p-8 h-full bg-gray-50 dark:bg-[#121212] overflow-auto"><h2 class="text-3xl font-bold mb-2 dark:text-white">Tech Stack</h2><p class="text-gray-500 mb-8">Tools and technologies I use to bring products to life.</p><div class="grid grid-cols-4 gap-6">${grid}</div></div>`;
+                    return `<div class="p-8 h-full bg-white/40 dark:bg-[#121212]/60 overflow-auto backdrop-blur-3xl"><h2 class="text-3xl font-bold mb-2 dark:text-white drop-shadow-sm">Tech Stack</h2><p class="text-gray-600 dark:text-gray-400 mb-8 font-medium">Tools and technologies I use to bring products to life.</p><div class="grid grid-cols-4 gap-6">${grid}</div></div>`;
+
+                case 'gallery':
+                    return `
+                        <div class="flex h-full text-gray-900 dark:text-white relative">
+                            <!-- Sidebar -->
+                            <div class="w-64 bg-white/40 dark:bg-black/20 p-4 flex flex-col gap-1 text-sm border-r border-gray-200/50 dark:border-gray-700/50 backdrop-blur-md">
+                                <div class="font-bold text-gray-500 text-xs px-2 mb-4 uppercase tracking-wider mt-2">Collections</div>
+                                <div onclick="renderGallery('photography')" data-folder="photography" class="gallery-tab p-2 hover:bg-white/40 dark:hover:bg-white/10 rounded-md cursor-pointer flex items-center gap-3 transition font-medium">
+                                    <i class="fas fa-camera w-5 text-center"></i> Photography
+                                </div>
+                                <div onclick="renderGallery('drawing')" data-folder="drawing" class="gallery-tab p-2 hover:bg-white/40 dark:hover:bg-white/10 rounded-md cursor-pointer flex items-center gap-3 transition font-medium">
+                                    <i class="fas fa-pencil-alt w-5 text-center"></i> Drawing
+                                </div>
+                            </div>
+                            
+                            <!-- Grid Area -->
+                            <div class="flex-1 p-8 overflow-auto bg-white/60 dark:bg-[#121212]/80 backdrop-blur-3xl">
+                                <div id="gallery-grid" class="grid grid-cols-3 gap-6">
+                                    <!-- Injected via JS -->
+                                </div>
+                            </div>
+
+                            <!-- Lightbox Viewer -->
+                            <div id="gallery-viewer" class="absolute inset-0 z-50 bg-black/95 hidden flex flex-col justify-center items-center">
+                                <div class="absolute top-4 right-4 z-50">
+                                    <button onclick="closeGalleryViewer()" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full w-10 h-10 flex items-center justify-center transition backdrop-blur-md">
+                                        <i class="fas fa-times text-xl"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="relative w-full h-full flex items-center justify-center p-12">
+                                    <img id="gallery-viewer-img" src="" class="max-h-full max-w-full object-contain rounded-lg shadow-2xl">
+                                    
+                                    <button onclick="changeGalleryImage(-1)" class="absolute left-4 text-white/50 hover:text-white bg-black/50 hover:bg-black/70 w-12 h-12 rounded-full flex items-center justify-center transition backdrop-blur-md">
+                                        <i class="fas fa-chevron-left text-2xl"></i>
+                                    </button>
+                                    <button onclick="changeGalleryImage(1)" class="absolute right-4 text-white/50 hover:text-white bg-black/50 hover:bg-black/70 w-12 h-12 rounded-full flex items-center justify-center transition backdrop-blur-md">
+                                        <i class="fas fa-chevron-right text-2xl"></i>
+                                    </button>
+                                </div>
+
+                                <div class="absolute bottom-8 px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white font-medium text-sm tracking-wide shadow-lg">
+                                    <span id="gallery-viewer-caption">Caption</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
 
                 case 'projects':
-                    return `<div class="flex h-full bg-gray-100 dark:bg-[#121212]"><div class="w-64 bg-white dark:bg-[#1a1a1a] border-r border-gray-200 dark:border-gray-700 flex flex-col"><div class="p-4 font-bold text-lg border-b dark:border-gray-700 dark:text-white">Categories</div><div class="p-2 space-y-1"><div class="px-4 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-md font-medium cursor-pointer">All Projects</div><div class="px-4 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md cursor-pointer">Web Apps</div></div></div><div class="flex-1 p-8 overflow-auto"><div class="grid grid-cols-1 lg:grid-cols-2 gap-6"><div class="project-card bg-white dark:bg-[#1e1e1e] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden transition"><div class="h-48 bg-gray-200 dark:bg-gray-700 relative group"><div class="absolute inset-0 flex items-center justify-center text-gray-400 text-4xl group-hover:scale-110 transition"><i class="fas fa-shopping-bag"></i></div></div><div class="p-6"><h3 class="text-xl font-bold mb-2 dark:text-white">E-Commerce Dashboard</h3><p class="text-gray-500 text-sm mb-4">Admin dashboard with real-time analytics.</p></div></div></div></div></div>`;
+                    return `<div class="flex h-full bg-gray-100/50 dark:bg-[#121212]/80 backdrop-blur-xl">
+                    <div class="w-64 bg-white/40 dark:bg-black/20 border-r border-gray-200/50 dark:border-gray-700/50 flex flex-col backdrop-blur-md">
+                        <div class="p-4 font-bold text-lg border-b border-gray-200/50 dark:border-gray-700 dark:text-white">Categories</div>
+                        <div class="p-2 space-y-1">
+                            <div class="px-4 py-2 bg-blue-100/50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 rounded-md font-bold cursor-pointer border border-blue-200/50">All Projects</div>
+                            <div class="px-4 py-2 text-gray-700 dark:text-gray-400 hover:bg-white/40 dark:hover:bg-white/10 rounded-md cursor-pointer transition font-medium">Web Apps</div>
+                        </div>
+                    </div>
+                    <div class="flex-1 p-8 overflow-auto">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div class="project-card bg-white/70 dark:bg-[#1e1e1e]/80 rounded-xl shadow-lg border border-white/40 dark:border-white/10 overflow-hidden transition backdrop-blur-sm hover:shadow-xl cursor-pointer" onclick="window.open('https://graphy-2025.streamlit.app/', '_blank')">
+                                <div class="h-48 bg-gray-200/50 dark:bg-gray-700/50 relative group flex items-center justify-center">
+                                    <div class="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-purple-500/10"></div>
+                                    <div class="text-gray-400 text-5xl group-hover:scale-110 transition drop-shadow-md"><i class="fas fa-project-diagram"></i></div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold mb-2 dark:text-white">Graphy</h3>
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 font-medium">Graph Visualizer And QnA Bot App. Interactive and intelligent.</p>
+                                    <div class="flex items-center gap-2 text-blue-500 text-sm font-bold">
+                                        View Project <i class="fas fa-external-link-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>`;
 
                 case 'contact':
                     return `
-                    <div class="flex flex-col h-full bg-white dark:bg-[#121212]">
-                        <div class="bg-gray-50 dark:bg-[#1a1a1a] p-3 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                    <div class="flex flex-col h-full bg-white/80 dark:bg-[#121212]/80 backdrop-blur-xl">
+                        <div class="bg-gray-50/50 dark:bg-[#1a1a1a]/50 p-3 border-b border-gray-200/50 dark:border-gray-700/50 flex justify-between items-center backdrop-blur-sm">
                             <div class="flex gap-2">
-                                <button onclick="sendEmail()" class="px-4 py-1.5 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 transition shadow-sm flex items-center">
+                                <button onclick="sendEmail()" class="px-4 py-1.5 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 transition shadow-md flex items-center">
                                     <i class="fas fa-paper-plane mr-2"></i> Send
                                 </button>
                             </div>
                         </div>
                         <div class="p-6 flex-1 overflow-auto max-w-3xl mx-auto w-full">
                             <div class="space-y-4">
-                                <div class="flex items-center border-b border-gray-100 dark:border-gray-800 pb-2">
-                                    <span class="text-gray-500 w-16 text-sm">To:</span>
-                                    <span class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm text-gray-800 dark:text-gray-200 font-mono">harshalpatel0210@gmail.com</span>
+                                <div class="flex items-center border-b border-gray-200/50 dark:border-gray-700 pb-2">
+                                    <span class="text-gray-500 w-16 text-sm font-bold">To:</span>
+                                    <span class="bg-gray-100/50 dark:bg-gray-800/50 px-2 py-1 rounded text-sm text-gray-800 dark:text-gray-200 font-mono">harshalpatel0210@gmail.com</span>
                                 </div>
-                                <div class="flex items-center border-b border-gray-100 dark:border-gray-800 pb-2">
-                                    <span class="text-gray-500 w-16 text-sm">From:</span>
-                                    <input id="email-sender" type="email" placeholder="your.email@example.com" class="flex-1 bg-transparent outline-none text-gray-800 dark:text-white text-sm font-medium">
+                                <div class="flex items-center border-b border-gray-200/50 dark:border-gray-700 pb-2">
+                                    <span class="text-gray-500 w-16 text-sm font-bold">From:</span>
+                                    <input id="email-sender" type="email" placeholder="your.email@example.com" class="flex-1 bg-transparent outline-none text-gray-800 dark:text-white text-sm font-medium placeholder-gray-400">
                                 </div>
-                                <div class="flex items-center border-b border-gray-100 dark:border-gray-800 pb-2">
-                                    <span class="text-gray-500 w-16 text-sm">Subject:</span>
-                                    <input id="email-subject" type="text" placeholder="Project Inquiry" class="flex-1 bg-transparent outline-none text-gray-800 dark:text-white text-sm font-medium">
+                                <div class="flex items-center border-b border-gray-200/50 dark:border-gray-700 pb-2">
+                                    <span class="text-gray-500 w-16 text-sm font-bold">Subject:</span>
+                                    <input id="email-subject" type="text" placeholder="Project Inquiry" class="flex-1 bg-transparent outline-none text-gray-800 dark:text-white text-sm font-medium placeholder-gray-400">
                                 </div>
-                                <textarea id="email-body" class="w-full h-64 bg-transparent outline-none text-gray-800 dark:text-gray-300 resize-none mt-4 leading-relaxed p-2" placeholder="Hi Harshal..."></textarea>
+                                <textarea id="email-body" class="w-full h-64 bg-transparent outline-none text-gray-800 dark:text-gray-200 resize-none mt-4 leading-relaxed p-2 placeholder-gray-400 font-medium" placeholder="Hi Harshal..."></textarea>
                             </div>
                         </div>
                     </div>`;
 
                 case 'calc':
-                    return `<div class="flex flex-col h-full bg-[#f3f3f3] dark:bg-gray-800"><div class="h-24 flex flex-col items-end justify-end p-4 text-4xl font-semibold select-all dark:text-white break-all" id="calc-display">0</div><div class="flex-1 grid grid-cols-4 gap-1 p-1"><button class="bg-white dark:bg-gray-700 hover:bg-gray-100 p-2 rounded text-sm" onclick="calcInput('C')">C</button><button class="bg-white dark:bg-gray-700 hover:bg-gray-100 p-2 rounded text-sm" onclick="calcInput('(')">(</button><button class="bg-white dark:bg-gray-700 hover:bg-gray-100 p-2 rounded text-sm" onclick="calcInput(')')">)</button><button class="bg-orange-100 text-orange-600 hover:bg-orange-200 p-2 rounded text-sm" onclick="calcInput('/')">÷</button><button class="bg-white dark:bg-gray-600 hover:bg-gray-100 p-2 rounded font-bold" onclick="calcInput('7')">7</button><button class="bg-white dark:bg-gray-600 hover:bg-gray-100 p-2 rounded font-bold" onclick="calcInput('8')">8</button><button class="bg-white dark:bg-gray-600 hover:bg-gray-100 p-2 rounded font-bold" onclick="calcInput('9')">9</button><button class="bg-orange-100 text-orange-600 hover:bg-orange-200 p-2 rounded text-sm" onclick="calcInput('*')">×</button><button class="bg-white dark:bg-gray-600 hover:bg-gray-100 p-2 rounded font-bold" onclick="calcInput('4')">4</button><button class="bg-white dark:bg-gray-600 hover:bg-gray-100 p-2 rounded font-bold" onclick="calcInput('5')">5</button><button class="bg-white dark:bg-gray-600 hover:bg-gray-100 p-2 rounded font-bold" onclick="calcInput('6')">6</button><button class="bg-orange-100 text-orange-600 hover:bg-orange-200 p-2 rounded text-sm" onclick="calcInput('-')">-</button><button class="bg-white dark:bg-gray-600 hover:bg-gray-100 p-2 rounded font-bold" onclick="calcInput('1')">1</button><button class="bg-white dark:bg-gray-600 hover:bg-gray-100 p-2 rounded font-bold" onclick="calcInput('2')">2</button><button class="bg-white dark:bg-gray-600 hover:bg-gray-100 p-2 rounded font-bold" onclick="calcInput('3')">3</button><button class="bg-orange-100 text-orange-600 hover:bg-orange-200 p-2 rounded text-sm" onclick="calcInput('+')">+</button><button class="bg-white dark:bg-gray-600 hover:bg-gray-100 p-2 rounded font-bold col-span-2" onclick="calcInput('0')">0</button><button class="bg-white dark:bg-gray-600 hover:bg-gray-100 p-2 rounded font-bold" onclick="calcInput('.')">.</button><button class="bg-blue-600 text-white hover:bg-blue-700 p-2 rounded font-bold" onclick="calcInput('=')">=</button></div></div>`;
+                    return `<div class="flex flex-col h-full bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-xl"><div class="h-24 flex flex-col items-end justify-end p-4 text-4xl font-semibold select-all dark:text-white break-all drop-shadow-sm" id="calc-display">0</div><div class="flex-1 grid grid-cols-4 gap-1 p-1"><button class="bg-white/80 dark:bg-gray-700/80 hover:bg-white dark:hover:bg-gray-600 p-2 rounded text-sm backdrop-blur-sm transition" onclick="calcInput('C')">C</button><button class="bg-white/80 dark:bg-gray-700/80 hover:bg-white dark:hover:bg-gray-600 p-2 rounded text-sm backdrop-blur-sm transition" onclick="calcInput('(')">(</button><button class="bg-white/80 dark:bg-gray-700/80 hover:bg-white dark:hover:bg-gray-600 p-2 rounded text-sm backdrop-blur-sm transition" onclick="calcInput(')')">)</button><button class="bg-orange-100/90 text-orange-600 hover:bg-orange-200 p-2 rounded text-sm backdrop-blur-sm transition" onclick="calcInput('/')">÷</button><button class="bg-white/80 dark:bg-gray-600/80 hover:bg-white dark:hover:bg-gray-500 p-2 rounded font-bold backdrop-blur-sm transition" onclick="calcInput('7')">7</button><button class="bg-white/80 dark:bg-gray-600/80 hover:bg-white dark:hover:bg-gray-500 p-2 rounded font-bold backdrop-blur-sm transition" onclick="calcInput('8')">8</button><button class="bg-white/80 dark:bg-gray-600/80 hover:bg-white dark:hover:bg-gray-500 p-2 rounded font-bold backdrop-blur-sm transition" onclick="calcInput('9')">9</button><button class="bg-orange-100/90 text-orange-600 hover:bg-orange-200 p-2 rounded text-sm backdrop-blur-sm transition" onclick="calcInput('*')">×</button><button class="bg-white/80 dark:bg-gray-600/80 hover:bg-white dark:hover:bg-gray-500 p-2 rounded font-bold backdrop-blur-sm transition" onclick="calcInput('4')">4</button><button class="bg-white/80 dark:bg-gray-600/80 hover:bg-white dark:hover:bg-gray-500 p-2 rounded font-bold backdrop-blur-sm transition" onclick="calcInput('5')">5</button><button class="bg-white/80 dark:bg-gray-600/80 hover:bg-white dark:hover:bg-gray-500 p-2 rounded font-bold backdrop-blur-sm transition" onclick="calcInput('6')">6</button><button class="bg-orange-100/90 text-orange-600 hover:bg-orange-200 p-2 rounded text-sm backdrop-blur-sm transition" onclick="calcInput('-')">-</button><button class="bg-white/80 dark:bg-gray-600/80 hover:bg-white dark:hover:bg-gray-500 p-2 rounded font-bold backdrop-blur-sm transition" onclick="calcInput('1')">1</button><button class="bg-white/80 dark:bg-gray-600/80 hover:bg-white dark:hover:bg-gray-500 p-2 rounded font-bold backdrop-blur-sm transition" onclick="calcInput('2')">2</button><button class="bg-white/80 dark:bg-gray-600/80 hover:bg-white dark:hover:bg-gray-500 p-2 rounded font-bold backdrop-blur-sm transition" onclick="calcInput('3')">3</button><button class="bg-orange-100/90 text-orange-600 hover:bg-orange-200 p-2 rounded text-sm backdrop-blur-sm transition" onclick="calcInput('+')">+</button><button class="bg-white/80 dark:bg-gray-600/80 hover:bg-white dark:hover:bg-gray-500 p-2 rounded font-bold col-span-2 backdrop-blur-sm transition" onclick="calcInput('0')">0</button><button class="bg-white/80 dark:bg-gray-600/80 hover:bg-white dark:hover:bg-gray-500 p-2 rounded font-bold backdrop-blur-sm transition" onclick="calcInput('.')">.</button><button class="bg-blue-600 text-white hover:bg-blue-700 p-2 rounded font-bold shadow-md transition" onclick="calcInput('=')">=</button></div></div>`;
 
-                case 'browser':
-                    return `<div class="flex flex-col h-full bg-white dark:bg-[#121212]"><div class="bg-gray-100 dark:bg-[#1a1a1a] p-2 flex items-center gap-2 border-b border-gray-200 dark:border-gray-700"><div class="flex gap-1 mr-2"><i class="fas fa-arrow-left text-gray-500 p-2 hover:bg-gray-200 dark:hover:bg-white/10 rounded-full cursor-pointer w-8 h-8 flex items-center justify-center" onclick="window.frames['edge-frame'].history.back()"></i><i class="fas fa-arrow-right text-gray-500 p-2 hover:bg-gray-200 dark:hover:bg-white/10 rounded-full cursor-pointer w-8 h-8 flex items-center justify-center" onclick="window.frames['edge-frame'].history.forward()"></i><i class="fas fa-rotate-right text-gray-500 p-2 hover:bg-gray-200 dark:hover:bg-white/10 rounded-full cursor-pointer w-8 h-8 flex items-center justify-center" onclick="edgeNavigate()"></i></div><form onsubmit="event.preventDefault(); edgeNavigate();" class="flex-1 flex gap-2"><input type="text" id="edge-url" value="https://www.wikipedia.org" class="flex-1 bg-white dark:bg-[#0d1117] rounded-full px-4 py-1.5 text-sm border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-gray-600 dark:text-gray-300 shadow-sm"></form></div><iframe id="edge-frame" name="edge-frame" src="https://www.wikipedia.org" class="flex-1 w-full h-full border-0 bg-white"></iframe></div>`;
-
-                case 'github':
-                    // Helper for creating repo cards with proper styling and onClick handler
-                    const generateRepoCard = (title, desc, lang, stars, color, url) => `
-                        <div onclick="window.open('${url}', '_blank')" class="border border-[#30363d] rounded-md p-4 bg-[#0d1117] flex flex-col justify-between h-28 hover:border-[#8b949e] cursor-pointer transition-colors">
-                            <div>
-                                <div class="flex justify-between items-start">
-                                    <span class="font-bold text-[#58a6ff] hover:underline text-sm mb-2 block truncate">${title}</span>
-                                    <span class="text-xs border border-[#30363d] text-[#8b949e] px-2 rounded-full">Public</span>
-                                </div>
-                                ${desc ? `<p class="text-xs text-[#8b949e] line-clamp-2 mb-4">${desc}</p>` : ''}
-                            </div>
-                            <div class="flex items-center gap-4 text-xs text-[#8b949e] mt-auto">
-                                ${lang ? `<span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full" style="background-color: ${color}"></span> ${lang}</span>` : ''}
-                                ${stars ? `<span class="flex items-center gap-1 hover:text-[#58a6ff]"><i class="far fa-star"></i> ${stars}</span>` : ''}
-                            </div>
-                        </div>
-                    `;
-
+                case 'snake':
                     return `
-                    <div class="flex flex-col h-full bg-[#0d1117] text-[#c9d1d9] font-sans overflow-hidden">
-                        <!-- Header -->
-                        <div class="bg-[#161b22] border-b border-[#30363d] p-4 flex items-center gap-4">
-                            <i class="fas fa-bars text-[#c9d1d9] text-lg"></i>
-                            <i class="fab fa-github text-white text-2xl"></i>
-                            <span class="font-bold text-sm">Harshal-Patel-In</span>
-                            <div class="flex-1"></div>
-                            <div class="relative w-64 hidden md:block">
-                                <div class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"><i class="fas fa-search text-[#8b949e] text-xs"></i></div>
-                                <input type="text" placeholder="Type / to search" class="w-full bg-[#0d1117] border border-[#30363d] rounded-md py-1 pl-8 text-sm text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none h-7">
-                            </div>
-                            <div class="flex gap-3 text-[#c9d1d9] items-center border-l border-[#30363d] pl-4">
-                                <i class="fas fa-plus cursor-pointer hover:text-white"></i>
-                                <i class="far fa-dot-circle cursor-pointer hover:text-white"></i>
-                                <i class="fas fa-code-pull-request cursor-pointer hover:text-white"></i>
-                                <i class="far fa-bell cursor-pointer hover:text-white"></i>
-                                <img src="https://ui-avatars.com/api/?name=Harshal+Patel&background=random" class="w-5 h-5 rounded-full border border-[#30363d]">
+                    <div class="flex flex-col h-full bg-black text-green-500 font-mono items-center justify-center relative" id="snake-container">
+                        <div class="absolute top-4 right-4 text-xl font-bold">Score: <span id="snake-score">0</span></div>
+                        <div class="absolute top-4 left-4 text-xs text-gray-500">Use Arrow Keys</div>
+                        <canvas id="snake-canvas" width="400" height="400" class="border-2 border-green-800 bg-gray-900 shadow-[0_0_20px_rgba(0,255,0,0.2)]"></canvas>
+                        <div id="snake-overlay" class="absolute inset-0 flex items-center justify-center bg-black/80 z-10 hidden">
+                            <div class="glass p-8 rounded-xl text-center border border-white/10">
+                                <h2 class="text-3xl font-bold mb-4 text-red-500">GAME OVER</h2>
+                                <button onclick="startSnakeGame()" class="bg-green-600 text-black px-6 py-2 rounded hover:bg-green-500 font-bold transition shadow-lg">Restart</button>
                             </div>
                         </div>
+                    </div>`;
 
-                        <!-- Navigation Tabs -->
-                        <div class="bg-[#0d1117] border-b border-[#30363d] px-8 flex gap-6 text-sm sticky top-0 z-10 pt-4 overflow-x-auto">
-                            <div class="flex items-center gap-2 border-b-2 border-[#f78166] pb-2 px-1 font-semibold cursor-pointer"><i class="fas fa-book-open"></i> Overview</div>
-                            <div class="flex items-center gap-2 pb-2 px-1 text-[#8b949e] hover:text-[#c9d1d9] cursor-pointer"><i class="fas fa-book"></i> Repositories <span class="bg-[#30363d] text-[#c9d1d9] rounded-full px-2 text-xs">11</span></div>
-                            <div class="flex items-center gap-2 pb-2 px-1 text-[#8b949e] hover:text-[#c9d1d9] cursor-pointer"><i class="fas fa-table-columns"></i> Projects</div>
-                            <div class="flex items-center gap-2 pb-2 px-1 text-[#8b949e] hover:text-[#c9d1d9] cursor-pointer"><i class="fas fa-box"></i> Packages</div>
-                            <div class="flex items-center gap-2 pb-2 px-1 text-[#8b949e] hover:text-[#c9d1d9] cursor-pointer"><i class="far fa-star"></i> Stars <span class="bg-[#30363d] text-[#c9d1d9] rounded-full px-2 text-xs">1</span></div>
+                case 'shooter':
+                    return `
+                    <div class="flex flex-col h-full bg-black relative overflow-hidden" id="shooter-container">
+                        <!-- Star Background -->
+                        <div class="absolute inset-0" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 30px 30px; opacity: 0.2;"></div>
+                        
+                        <div class="absolute top-4 left-4 text-cyan-400 font-mono text-sm z-10">
+                            <div>ARROWS: Move</div>
+                            <div>SPACE: Shoot</div>
+                        </div>
+                        <div class="absolute top-4 right-4 text-cyan-400 font-mono text-xl font-bold z-10">
+                            Score: <span id="shooter-score">0</span>
                         </div>
 
-                        <!-- Main Content -->
-                        <div class="flex-1 overflow-y-auto flex flex-col md:flex-row max-w-7xl mx-auto w-full">
-                            <!-- Sidebar -->
-                            <div class="w-full md:w-80 p-4 md:p-8 md:-mt-8 z-20">
-                                <div class="relative group w-full aspect-square max-w-[296px] rounded-full overflow-hidden border border-[#30363d] mb-4">
-                                    <img src="https://ui-avatars.com/api/?name=Harshal+Patel&background=random&size=300" class="w-full h-full object-cover bg-[#0d1117]">
-                                    <div class="absolute bottom-8 left-0 right-0 flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full w-8 h-8 mx-auto border border-[#30363d] cursor-pointer hover:text-blue-400"><i class="far fa-smile"></i></div>
-                                </div>
-                                
-                                <h1 class="text-2xl font-bold text-[#c9d1d9]">Harshal Patel</h1>
-                                <div class="text-[#8b949e] text-xl mb-4">Harshal-Patel-In • he/him</div>
-                                
-                                <button class="w-full bg-[#21262d] border border-[#30363d] rounded-md py-1.5 text-sm font-medium text-[#c9d1d9] hover:bg-[#30363d] hover:border-[#8b949e] transition mb-4">Edit profile</button>
-                                
-                                <div class="flex items-center gap-1 text-[#8b949e] text-sm mb-6">
-                                    <i class="fas fa-user-group text-[#8b949e]"></i>
-                                    <span class="font-bold text-[#c9d1d9] hover:text-[#58a6ff] cursor-pointer">2</span> followers
-                                    <span>·</span>
-                                    <span class="font-bold text-[#c9d1d9] hover:text-[#58a6ff] cursor-pointer">3</span> following
-                                </div>
+                        <canvas id="shooter-canvas" width="600" height="500" class="relative z-0 block mx-auto my-auto border-x border-cyan-900/50 shadow-[0_0_30px_rgba(0,255,255,0.1)]"></canvas>
 
-                                <div class="space-y-2 text-sm text-[#c9d1d9]">
-                                    <div class="flex items-center gap-2"><i class="far fa-clock text-[#8b949e] w-4 text-center"></i> 13:13 (UTC +05:30)</div>
-                                    <div class="flex items-center gap-2"><i class="far fa-envelope text-[#8b949e] w-4 text-center"></i> <a href="mailto:harshalpatel0210@gmail.com" class="hover:text-[#58a6ff] hover:underline">harshalpatel0210@gmail.com</a></div>
-                                </div>
-
-                                <div class="mt-6 pt-6 border-t border-[#30363d]">
-                                    <h2 class="font-bold mb-2">Achievements</h2>
-                                    <div class="flex gap-2">
-                                        <img src="https://github.githubassets.com/assets/quickdraw-default--light-8f798b35341a.png" class="w-16 h-16" title="Quickdraw">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Right Column -->
-                            <div class="flex-1 p-4 md:p-8">
-                                <!-- Readme Section -->
-                                <div class="border border-[#30363d] rounded-md p-6 mb-8">
-                                    <div class="text-xs text-[#8b949e] mb-4 flex justify-between items-center">
-                                        <span>Harshal-Patel-In / README.md</span>
-                                        <i class="fas fa-pencil text-[#8b949e] hover:text-[#58a6ff] cursor-pointer"></i>
-                                    </div>
-                                    <div class="prose prose-invert max-w-none text-sm">
-                                        <h3 class="text-lg font-bold mb-2">Hi, I'm @Harshal-Patel-In</h3>
-                                        <ul class="list-none space-y-1 pl-0">
-                                            <li>👋 Hi, I'm @Harshal-Patel-In</li>
-                                            <li>👀 I'm interested in AI</li>
-                                            <li>🌱 I'm currently learning Computer Science</li>
-                                            <li>💞️ I'm looking to collaborate on AI-ML projects</li>
-                                            <li>📫 How to reach me <a href="#" class="text-[#58a6ff] hover:underline">harshalpatel0210@gmail.com</a></li>
-                                            <li>😄 Pronouns: Any Name You Like 👍</li>
-                                            <li>⚡ Fun fact: I am also interested in Photography and Drawing.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <!-- Popular Repos -->
-                                <div class="flex justify-between items-end mb-2">
-                                    <h2 class="text-base font-normal">Popular repositories</h2>
-                                    <span class="text-xs text-[#58a6ff] hover:underline cursor-pointer">Customize your pins</span>
-                                </div>
-                                
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    ${generateRepoCard('Graphy', 'This Is Graph Visualizer And QnA Bot App', 'Python', '1', '#3572A5', 'https://github.com/Harshal-Patel-In/Graphy')}
-                                    ${generateRepoCard('Harshal-Patel-In', 'Config files for my GitHub profile.', null, null, null, 'https://github.com/Harshal-Patel-In/Harshal-Patel-In')}
-                                    ${generateRepoCard('GeoH2', 'Forked from ClimateCompatibleGrowth/GeoH2... Geospatial analysis...', 'Python', '', '#3572A5', 'https://github.com/Harshal-Patel-In/GeoH2')}
-                                    ${generateRepoCard('urban-h2-navigator', null, 'TypeScript', '2', '#2b7489', 'https://github.com/Harshal-Patel-In/urban-h2-navigator')}
-                                    ${generateRepoCard('guvnl-feedback-app', 'Forked from kunj-31/guvnl-feedback-app', null, null, null, 'https://github.com/Harshal-Patel-In/guvnl-feedback-app')}
-                                    ${generateRepoCard('SSIP', null, null, null, null, 'https://github.com/Harshal-Patel-In/SSIP')}
-                                </div>
+                        <div id="shooter-overlay" class="absolute inset-0 flex items-center justify-center bg-black/80 z-20 hidden">
+                            <div class="glass p-8 rounded-xl text-center border border-cyan-500/30 shadow-[0_0_50px_rgba(0,255,255,0.2)]">
+                                <h2 class="text-4xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">GAME OVER</h2>
+                                <p class="text-cyan-200 mb-6 font-mono">Final Score: <span id="shooter-final-score">0</span></p>
+                                <button onclick="startShooterGame()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-8 py-3 rounded font-bold transition shadow-lg uppercase tracking-wider">Replay</button>
                             </div>
                         </div>
-                    </div>
-                    `;
+                    </div>`;
+
+                case 'tictactoe':
+                    return `
+                    <div class="flex flex-col h-full bg-white dark:bg-[#121212] items-center justify-center text-gray-800 dark:text-white">
+                        <h2 class="text-2xl font-bold mb-6">Tic Tac Toe</h2>
+                        <div class="grid grid-cols-3 gap-2 mb-6" id="ttt-grid">
+                            <!-- Grid generated via JS -->
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span id="ttt-status" class="font-medium text-lg">Player X's Turn</span>
+                            <button onclick="resetTicTacToe()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition shadow">Reset</button>
+                        </div>
+                    </div>`;
 
                 default:
                     return `<div class="p-4">App not found</div>`;
@@ -1154,6 +1520,365 @@
                 if (display.innerText === '0' && !isNaN(val)) calcExp = '';
                 calcExp += val;
                 display.innerText = calcExp;
+            }
+        }
+
+        // --- GAME LOGIC ---
+
+        // Snake Game
+        let snakeInterval;
+        let currentSnakeHandler = null; // Track the event listener to remove it later
+
+        function startSnakeGame() {
+            const canvas = document.getElementById('snake-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const overlay = document.getElementById('snake-overlay');
+            const scoreEl = document.getElementById('snake-score');
+            overlay.classList.add('hidden');
+            
+            // CLEANUP: Remove old listener if it exists to prevent stacking
+            if (currentSnakeHandler) {
+                document.removeEventListener('keydown', currentSnakeHandler);
+                currentSnakeHandler = null;
+            }
+
+            let snake = [{x: 10, y: 10}];
+            let gridSize = 20;
+            let tileCount = canvas.width / gridSize;
+            
+            // RANDOM FOOD START
+            let food = {
+                x: Math.floor(Math.random() * tileCount),
+                y: Math.floor(Math.random() * tileCount)
+            };
+            
+            let dx = 1; 
+            let dy = 0;
+            let score = 0;
+            let speed = 150;
+
+            // FIX: Create a specific handler that we can reference and remove
+            currentSnakeHandler = function(e) {
+                // FIX: Prevent browser scrolling when using arrow keys
+                if([37, 38, 39, 40].includes(e.keyCode)) {
+                    e.preventDefault();
+                }
+
+                switch(e.keyCode) {
+                    case 37: if(dx !== 1) { dx = -1; dy = 0; } break; // Left
+                    case 38: if(dy !== 1) { dx = 0; dy = -1; } break; // Up
+                    case 39: if(dx !== -1) { dx = 1; dy = 0; } break; // Right
+                    case 40: if(dy !== -1) { dx = 0; dy = 1; } break; // Down
+                }
+            };
+
+            document.addEventListener('keydown', currentSnakeHandler);
+
+            if (snakeInterval) clearInterval(snakeInterval);
+            snakeInterval = setInterval(drawGame, speed);
+
+            function drawGame() {
+                if(!document.getElementById('snake-canvas')) {
+                    stopSnakeGame(); // Cleanup if window is closed
+                    return;
+                }
+
+                // Update Position
+                const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+
+                // Wall Collision
+                if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
+                    gameOver();
+                    return;
+                }
+
+                // Self Collision
+                for (let i = 0; i < snake.length; i++) {
+                    if (head.x === snake[i].x && head.y === snake[i].y) {
+                        gameOver();
+                        return;
+                    }
+                }
+
+                snake.unshift(head);
+
+                // Food Collision
+                if (head.x === food.x && head.y === food.y) {
+                    score++;
+                    scoreEl.innerText = score;
+                    food = {
+                        x: Math.floor(Math.random() * tileCount),
+                        y: Math.floor(Math.random() * tileCount)
+                    };
+                } else {
+                    snake.pop();
+                }
+
+                // Draw Grid Background
+                ctx.fillStyle = '#111'; // Very dark gray background
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.strokeStyle = '#222'; // Grid lines
+                for(let i=0; i<tileCount; i++) {
+                    for(let j=0; j<tileCount; j++) {
+                        ctx.strokeRect(i*gridSize, j*gridSize, gridSize, gridSize);
+                    }
+                }
+
+                for (let i = 0; i < snake.length; i++) {
+                    // Added slight padding (gridSize - 2) to make snake segments look like boxes
+                    if (i === 0) {
+                        // Head
+                        ctx.fillStyle = '#4ade80'; // Distinct light green for head
+                        ctx.fillRect(snake[i].x * gridSize + 1, snake[i].y * gridSize + 1, gridSize - 2, gridSize - 2);
+                        
+                        // Eyes
+                        ctx.fillStyle = 'black';
+                        if (dx === 1) { // Moving Right
+                            ctx.fillRect(snake[i].x * gridSize + 12, snake[i].y * gridSize + 4, 4, 4);
+                            ctx.fillRect(snake[i].x * gridSize + 12, snake[i].y * gridSize + 12, 4, 4);
+                        } else if (dx === -1) { // Moving Left
+                            ctx.fillRect(snake[i].x * gridSize + 4, snake[i].y * gridSize + 4, 4, 4);
+                            ctx.fillRect(snake[i].x * gridSize + 4, snake[i].y * gridSize + 12, 4, 4);
+                        } else if (dy === -1) { // Moving Up
+                            ctx.fillRect(snake[i].x * gridSize + 4, snake[i].y * gridSize + 4, 4, 4);
+                            ctx.fillRect(snake[i].x * gridSize + 12, snake[i].y * gridSize + 4, 4, 4);
+                        } else { // Moving Down
+                            ctx.fillRect(snake[i].x * gridSize + 4, snake[i].y * gridSize + 12, 4, 4);
+                            ctx.fillRect(snake[i].x * gridSize + 12, snake[i].y * gridSize + 12, 4, 4);
+                        }
+                    } else {
+                        // Body
+                        ctx.fillStyle = 'lime';
+                        ctx.fillRect(snake[i].x * gridSize + 1, snake[i].y * gridSize + 1, gridSize - 2, gridSize - 2);
+                    }
+                }
+
+                ctx.fillStyle = 'red';
+                ctx.fillRect(food.x * gridSize + 1, food.y * gridSize + 1, gridSize - 2, gridSize - 2);
+            }
+
+            function gameOver() {
+                clearInterval(snakeInterval);
+                overlay.classList.remove('hidden');
+            }
+        }
+
+        function stopSnakeGame() {
+            if (snakeInterval) clearInterval(snakeInterval);
+            // Clean up the event listener when the game stops
+            if (currentSnakeHandler) {
+                document.removeEventListener('keydown', currentSnakeHandler);
+                currentSnakeHandler = null;
+            }
+        }
+
+        // --- SPACE SHOOTER LOGIC ---
+        let shooterReq;
+        let currentShooterHandler = null;
+
+        function startShooterGame() {
+            const canvas = document.getElementById('shooter-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const overlay = document.getElementById('shooter-overlay');
+            const scoreEl = document.getElementById('shooter-score');
+            const finalScoreEl = document.getElementById('shooter-final-score');
+            
+            overlay.classList.add('hidden');
+            
+            if (currentShooterHandler) {
+                document.removeEventListener('keydown', currentShooterHandler);
+                document.removeEventListener('keyup', currentShooterHandler);
+            }
+
+            let player = { x: canvas.width/2 - 15, y: canvas.height - 50, w: 30, h: 30, color: '#22d3ee' };
+            let bullets = [];
+            let enemies = [];
+            let score = 0;
+            let frameCount = 0;
+            let keys = {};
+            let gameOverState = false;
+
+            currentShooterHandler = function(e) {
+                if(['ArrowLeft', 'ArrowRight', ' '].includes(e.key)) e.preventDefault();
+                keys[e.key] = e.type === 'keydown';
+                
+                if(e.type === 'keydown' && e.key === ' ' && !gameOverState) {
+                    bullets.push({ x: player.x + 12, y: player.y, w: 6, h: 15, color: '#a78bfa' });
+                }
+            };
+
+            document.addEventListener('keydown', currentShooterHandler);
+            document.addEventListener('keyup', currentShooterHandler);
+
+            if(shooterReq) cancelAnimationFrame(shooterReq);
+            
+            function loop() {
+                if(!document.getElementById('shooter-canvas')) {
+                    stopShooterGame();
+                    return;
+                }
+                if(gameOverState) return;
+
+                ctx.fillStyle = '#000';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Move Player
+                if(keys['ArrowLeft'] && player.x > 0) player.x -= 5;
+                if(keys['ArrowRight'] && player.x < canvas.width - player.w) player.x += 5;
+
+                // Spawn Enemies
+                if(frameCount % 60 === 0) {
+                    enemies.push({ x: Math.random() * (canvas.width - 30), y: -30, w: 30, h: 30, color: '#f472b6' });
+                }
+
+                // Logic Update
+                bullets.forEach((b, bi) => {
+                    b.y -= 7;
+                    if(b.y < 0) bullets.splice(bi, 1);
+                });
+
+                enemies.forEach((e, ei) => {
+                    e.y += 2; // Enemy speed
+                    
+                    // FIX: Remove enemy if it goes off screen instead of game over
+                    if(e.y > canvas.height) {
+                        enemies.splice(ei, 1);
+                        return;
+                    }
+                    
+                    // Collision Player
+                    if(rectIntersect(player, e)) gameOver();
+
+                    // Collision Bullet
+                    bullets.forEach((b, bi) => {
+                        if(rectIntersect(b, e)) {
+                            enemies.splice(ei, 1);
+                            bullets.splice(bi, 1);
+                            score += 10;
+                            scoreEl.innerText = score;
+                        }
+                    });
+                });
+
+                // Draw Elements
+                // Player (Triangle)
+                ctx.fillStyle = player.color;
+                ctx.beginPath();
+                ctx.moveTo(player.x + 15, player.y);
+                ctx.lineTo(player.x + 30, player.y + 30);
+                ctx.lineTo(player.x, player.y + 30);
+                ctx.fill();
+
+                // Bullets
+                bullets.forEach(b => {
+                    ctx.fillStyle = b.color;
+                    ctx.fillRect(b.x, b.y, b.w, b.h);
+                });
+
+                // Enemies (Squares with retro inner box)
+                enemies.forEach(e => {
+                    ctx.fillStyle = e.color;
+                    ctx.fillRect(e.x, e.y, e.w, e.h);
+                    ctx.fillStyle = '#000';
+                    ctx.fillRect(e.x + 5, e.y + 5, e.w - 10, e.h - 10);
+                    ctx.fillStyle = e.color;
+                    ctx.fillRect(e.x + 10, e.y + 10, e.w - 20, e.h - 20);
+                });
+
+                frameCount++;
+                shooterReq = requestAnimationFrame(loop);
+            }
+
+            function rectIntersect(r1, r2) {
+                return !(r2.x > r1.x + r1.w || r2.x + r2.w < r1.x || r2.y > r1.y + r1.h || r2.y + r2.h < r1.y);
+            }
+
+            function gameOver() {
+                gameOverState = true;
+                finalScoreEl.innerText = score;
+                overlay.classList.remove('hidden');
+                cancelAnimationFrame(shooterReq);
+            }
+
+            loop();
+        }
+
+        function stopShooterGame() {
+            if(shooterReq) cancelAnimationFrame(shooterReq);
+            if(currentShooterHandler) {
+                document.removeEventListener('keydown', currentShooterHandler);
+                document.removeEventListener('keyup', currentShooterHandler);
+                currentShooterHandler = null;
+            }
+        }
+
+        // Tic Tac Toe Logic
+        let tttBoard = ['', '', '', '', '', '', '', '', ''];
+        let tttPlayer = 'X';
+        let tttGameActive = true;
+
+        function resetTicTacToe() {
+            tttBoard = ['', '', '', '', '', '', '', '', ''];
+            tttPlayer = 'X';
+            tttGameActive = true;
+            document.getElementById('ttt-status').innerText = "Player X's Turn";
+            renderTicTacToeGrid();
+        }
+
+        function renderTicTacToeGrid() {
+            const grid = document.getElementById('ttt-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            tttBoard.forEach((cell, index) => {
+                const el = document.createElement('div');
+                el.className = `w-24 h-24 bg-gray-200 dark:bg-gray-800 rounded-lg flex items-center justify-center text-4xl font-bold cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 transition ${cell === 'X' ? 'text-blue-500' : 'text-rose-500'}`;
+                el.innerText = cell;
+                el.onclick = () => handleTicTacToeClick(index);
+                grid.appendChild(el);
+            });
+        }
+
+        function handleTicTacToeClick(index) {
+            if (tttBoard[index] !== '' || !tttGameActive) return;
+            
+            tttBoard[index] = tttPlayer;
+            renderTicTacToeGrid();
+            checkTicTacToeWin();
+            
+            if(tttGameActive) {
+                tttPlayer = tttPlayer === 'X' ? 'O' : 'X';
+                document.getElementById('ttt-status').innerText = `Player ${tttPlayer}'s Turn`;
+            }
+        }
+
+        function checkTicTacToeWin() {
+            const winConditions = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]
+            ];
+
+            let roundWon = false;
+            for (let i = 0; i < winConditions.length; i++) {
+                const [a, b, c] = winConditions[i];
+                if (tttBoard[a] && tttBoard[a] === tttBoard[b] && tttBoard[a] === tttBoard[c]) {
+                    roundWon = true;
+                    break;
+                }
+            }
+
+            if (roundWon) {
+                document.getElementById('ttt-status').innerText = `Player ${tttPlayer} Wins! 🎉`;
+                tttGameActive = false;
+                return;
+            }
+
+            if (!tttBoard.includes('')) {
+                document.getElementById('ttt-status').innerText = 'Draw!';
+                tttGameActive = false;
             }
         }
     </script>
